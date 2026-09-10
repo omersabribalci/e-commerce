@@ -1,1 +1,107 @@
 @import "tailwindcss";
+
+@theme {
+  /* Başlıklar için Montserrat (Genelde bold kullanılır) */
+  --font-display: "Montserrat", sans-serif;
+
+  /* Gövde metinleri ve normal alanlar için Montserrat */
+  --font-body: "Montserrat", sans-serif;
+
+  /* ... diğer tanımların kalabilir ... */
+
+  /* ============================================
+     TEXT SCALE — Figma "Text styles" panelinden
+     birebir (px / 16 = rem)
+     ============================================ */
+  --text-h0: 5.625rem; /* 90px */
+  --text-h0--line-height: 5.625rem; /* 90px */
+
+  --text-h1: 3.625rem; /* 58px */
+  --text-h1--line-height: 5rem; /* 80px */
+
+  --text-h2: 2.5rem; /* 40px */
+  --text-h2--line-height: 3.125rem; /* 50px */
+
+  --text-h3: 1.5rem; /* 24px */
+  --text-h3--line-height: 2rem; /* 32px */
+
+  --text-h4: 1.25rem; /* 20px */
+  --text-h4--line-height: 1.875rem; /* 30px */
+
+  --text-h5: 1rem; /* 16px */
+  --text-h5--line-height: 1.5rem; /* 24px */
+
+  --text-h6: 0.875rem; /* 14px */
+  --text-h6--line-height: 1.5rem; /* 24px */
+
+  --text-btn: 0.875rem; /* 14px, "btn-text" */
+  --text-btn--line-height: 1.375rem; /* 22px */
+
+  --text-mobile-menu: 1.875rem; /* 30px */
+  --text-mobile-menu--line-height: 2.8125rem; /* 45px */
+
+  --text-paragraph: 0.875rem; /* 14px */
+  --text-paragraph--line-height: 1.25rem; /* 20px */
+
+  --text-list: 1.25rem; /* 20px */
+  --text-list--line-height: 1.875rem; /* 30px */
+
+  --text-link: 0.875rem; /* 14px */
+  --text-link--line-height: 1.5rem; /* 24px */
+
+  --text-small: 0.75rem; /* 12px */
+  --text-small--line-height: 1rem; /* 16px */
+
+  /* ============================================
+     BREAKPOINTS — Figma "Layout guide styles"
+     panelindeki Bootstrap değerleri
+     ============================================ */
+  --breakpoint-sm: 37.5rem; /* 600px  - Bootstrap tablet small */
+  --breakpoint-md: 48rem; /* 768px  - Bootstrap tablet medium */
+  --breakpoint-lg: 60rem; /* 960px  - Bootstrap large tablet */
+  --breakpoint-xl: 71.25rem; /* 1140px - Bootstrap desktop */
+
+  /* ============================================
+     RENKLER
+     ============================================ */
+  --color-primary: #23a6f0; /* primary-color */
+  --color-secondary-1: #23856d; /* secondary-color-1 */
+  --color-secondary-2: #3c403d; /* secondary-color-2 */
+
+  --color-bg-dark: #252b42; /* dark-background-color */
+  --color-bg-light: #ffffff; /* light-background-color */
+
+  --color-success: #2dc071; /* success-color */
+  --color-alert: #e77c40; /* alert-color */
+  --color-danger: #e74040; /* danger-color */
+  --color-hover: #2a7cc7; /* hover-color */
+  --color-disabled: #8ec2f2; /* disabled-element-color */
+  --color-muted: #bdbdbd; /* muted-color */
+
+  --color-gray-light-1: #fafafa; /* light-gray-1 */
+  --color-gray-light-2: #ececec; /* light-gray-2 */
+
+  /* Text renkleri — çoğu yukarıdaki fill renkleriyle aynı çıktı,
+     sadece gerçekten farklı olanlar ayrı token oldu */
+  --color-text: #252b42; /* text-color */
+  --color-text-light: #ffffff; /* light-text-color, koyu zeminlerde kullan */
+  --color-text-secondary: #737373; /* second-text-color */
+  --color-secondary-1-text: #40bb15; /* secondary-text-color-1 — secondary-color-1'den farklı, kontrol et */
+
+  /* Faded/soluk varyantlar — genelde ana rengin
+     düşük opacity'li hali, tekrar tanımlamak yerine
+     opacity modifier ile de yapılabilir: bg-primary/20 gibi */
+  --color-primary-faded: #b2e3ff; /* faded-primary-color */
+  --color-secondary-1-faded: #b9eaa8; /* faded-secondary-color-1 */
+  --color-secondary-2-faded: #ffdcd1; /* faded-secondary-color-2 */
+
+  /* ============================================
+     GÖLGELER — Figma "Effect styles" panelinden
+     (her birinin X/Y/blur/spread/renk değerini
+     Figma'da effect'e tıklayıp oradan al)
+     ============================================ */
+  --shadow-accentued: 0 13px 19px rgb(0 0 0 / 0.07); /* accentued-drop-shadow */
+  --shadow-dramatic: -31px -22px 19px rgb(0 0 0 / 0.3); /* dramatic-shadow */
+  --shadow-light: 0 2px 4px rgb(0 0 0 / 0.1); /* light-drop-shadow */
+  --text-shadow-default: 0 13px 19px rgb(0 0 0 / 0.24); /* text-shadow */
+}
