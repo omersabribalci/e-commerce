@@ -1,4 +1,4 @@
-import { products } from "../../data/Products/products";
+import { products } from "../../data/products";
 import ProductCard from "./ProductCard";
 
 const BestSellers = () => {

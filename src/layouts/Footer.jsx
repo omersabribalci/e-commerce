@@ -15,8 +15,8 @@ const Footer = () => {
           ))}
         </ul>
       </div>
+      <hr className="hidden md:block text-[#E6E6E6]" />
       <div className="bg-[#FFFFFF] px-11 md:px-50">
-        <hr className="hidden md:block text-[#E6E6E6]" />
         <div className="flex flex-col justify-between lg:flex-row py-8 md:gap-10">
           {footerSectionTitles.map((item, index) => (
             <FooterSection
