@@ -1,16 +1,8 @@
 import { Mail, Phone } from "lucide-react";
-import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-
 import { Link } from "react-router-dom";
+import { mediaIcons } from "../../data/Navigation/navbar";
 
 const TopBar = () => {
-  const mediaIcons = [
-    { icon: <FaInstagram />, link: "/" },
-    { icon: <FaYoutube />, link: "/" },
-    { icon: <FaFacebookF />, link: "/" },
-    { icon: <FaTwitter />, link: "/" },
-  ];
-
   return (
     <div className="hidden xl:flex sm:flex-row max-w-7xl bg-bg-dark mx-auto justify-center items-center px-4 sm:px-6 py-4 text-text-light gap-22 whitespace-nowrap min-w-full">
       <div className="flex flex-row gap-4 text-small items-center">

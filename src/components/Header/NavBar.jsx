@@ -1,22 +1,8 @@
-import { CircleUser, Heart, Search, ShoppingCart } from "lucide-react";
+import { CircleUser } from "lucide-react";
 import { Link } from "react-router-dom";
+import { navIcons, navLink } from "../../data/Navigation/navbar";
 
 const NavBar = () => {
-  const navIcons = [
-    { icon: <Search />, link: "/", badge: null },
-    { icon: <ShoppingCart />, link: "/", badge: 1 },
-    { icon: <Heart />, link: "/", badge: 1 },
-  ];
-
-  const navLink = [
-    { text: "Home", link: "/" },
-    { text: "Shop", link: "/", dropdown: true },
-    { text: "About", link: "/" },
-    { text: "Blog", link: "/" },
-    { text: "Contact", link: "/" },
-    { text: "Pages", link: "/" },
-  ];
-
   return (
     <div className="bg-bg-light flex flex-col sm:flex-row gap-8 sm:gap-30 justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 py-4">
       <div>

@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import heroImage1 from "../../assets/hero/hero-slider-1.webp";
 import heroImage2 from "../../assets/hero/hero-slider-2.webp";
 import heroImage3 from "../../assets/hero/hero-slider-3.webp";
-import Button from "../ui/Button";
+import ButtonSuccess from "../ui/ButtonSuccess";
 
 const SlideContent = ({ eyebrow, title, description, buttonText }) => {
   return (
@@ -20,7 +20,7 @@ const SlideContent = ({ eyebrow, title, description, buttonText }) => {
       <p className="mt-5 max-w-80 font-body text-paragraph font-medium sm:mt-7 sm:text-h5">
         {description}
       </p>
-      <Button className="mt-6">{buttonText}</Button>
+      <ButtonSuccess className="mt-6">{buttonText}</ButtonSuccess>
     </div>
   );
 };
