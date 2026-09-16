@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { FooterSection } from "../components/Footer/FooterSection";
 import { footerSectionTitles, mediaIcons } from "../data/Footer/footerSection";
 
@@ -10,7 +9,9 @@ const Footer = () => {
         <ul className="flex gap-4 text-primary">
           {mediaIcons.map((item, index) => (
             <li key={index}>
-              <Link to={item.link}>{item.icon}</Link>
+              <a href={item.link} target="_blank" rel="noopener noreferrer">
+                {item.icon}
+              </a>
             </li>
           ))}
         </ul>
