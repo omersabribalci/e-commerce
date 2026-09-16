@@ -1,11 +1,11 @@
 import ProductDetail from "../components/Product/ProductDetail";
 import BrandSection from "../components/Shop/BrandSection";
-import BreadCrumb from "../components/ui/BreadCrumb";
 import ProductGrid from "../components/Product/ProductGrid";
 import { products } from "../data/products";
 import PageContent from "../layouts/PageContent";
 import ProductInfoTabs from "../components/Product/ProductInfoTabs";
 import { useParams } from "react-router-dom";
+import BreadCrumb from "../components/ui/BreadCrumb";
 
 const product = {
   id: 1,
