@@ -1,9 +1,9 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export const mediaIcons = [
-  { icon: <FaFacebookF />, link: "/" },
-  { icon: <FaInstagram />, link: "/" },
-  { icon: <FaTwitter />, link: "/" },
+  { icon: <FaFacebookF />, link: "https://www.facebook.com/" },
+  { icon: <FaInstagram />, link: "https://www.instagram.com/" },
+  { icon: <FaTwitter />, link: "https://x.com/" },
 ];
 
 export const footerSectionTitles = [

@@ -9,6 +9,7 @@ import product8 from "../assets/best-sellers/product8.png";
 
 export const products = [
   {
+    id: 1,
     photo: product1,
     title: "Graphic Design",
     subtitle: "English Department",
@@ -17,6 +18,7 @@ export const products = [
     colors: ["bg-primary", "bg-secondary-1", "bg-alert", "bg-bg-dark"],
   },
   {
+    id: 2,
     photo: product2,
     title: "Graphic Design",
     subtitle: "English Department",
@@ -25,6 +27,7 @@ export const products = [
     colors: ["bg-primary", "bg-secondary-1", "bg-alert", "bg-bg-dark"],
   },
   {
+    id: 3,
     photo: product3,
     title: "Graphic Design",
     subtitle: "English Department",
@@ -33,6 +36,7 @@ export const products = [
     colors: ["bg-primary", "bg-secondary-1", "bg-alert", "bg-bg-dark"],
   },
   {
+    id: 4,
     photo: product4,
     title: "Graphic Design",
     subtitle: "English Department",
@@ -41,6 +45,7 @@ export const products = [
     colors: ["bg-primary", "bg-secondary-1", "bg-alert", "bg-bg-dark"],
   },
   {
+    id: 5,
     photo: product5,
     title: "Graphic Design",
     subtitle: "English Department",
@@ -49,6 +54,7 @@ export const products = [
     colors: ["bg-primary", "bg-secondary-1", "bg-alert", "bg-bg-dark"],
   },
   {
+    id: 6,
     photo: product6,
     title: "Graphic Design",
     subtitle: "English Department",
@@ -57,6 +63,7 @@ export const products = [
     colors: ["bg-primary", "bg-secondary-1", "bg-alert", "bg-bg-dark"],
   },
   {
+    id: 7,
     photo: product7,
     title: "Graphic Design",
     subtitle: "English Department",
@@ -65,6 +72,7 @@ export const products = [
     colors: ["bg-primary", "bg-secondary-1", "bg-alert", "bg-bg-dark"],
   },
   {
+    id: 8,
     photo: product8,
     title: "Graphic Design",
     subtitle: "English Department",

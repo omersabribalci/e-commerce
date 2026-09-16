@@ -4,7 +4,7 @@ import { navIcons, navLink } from "../../data/Navigation/navbar";
 
 const NavBar = () => {
   return (
-    <div className="bg-bg-light flex flex-col sm:flex-row gap-8 sm:gap-30 justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 py-4">
+    <nav className="bg-bg-light flex flex-col sm:flex-row gap-8 sm:gap-30 justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 py-4">
       <div>
         <h3 className="text-text font-display font-bold text-h3">Bandage</h3>
       </div>
@@ -19,7 +19,7 @@ const NavBar = () => {
 
         <ul className="flex items-center gap-8 flex-col sm:flex-row text-primary">
           <li>
-            <Link className="flex gap-2 items-center sm:flex-row">
+            <Link to="/login" className="flex gap-2 items-center sm:flex-row">
               <CircleUser />
               <span className="whitespace-nowrap">Login / Register</span>
             </Link>
@@ -31,7 +31,7 @@ const NavBar = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </nav>
   );
 };
 

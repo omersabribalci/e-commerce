@@ -1,5 +1,5 @@
 import { products } from "../../data/products";
-import ProductCard from "./ProductCard";
+import ProductGrid from "../Product/ProductGrid";
 
 const BestSellers = () => {
   return (
@@ -11,11 +11,7 @@ const BestSellers = () => {
           Problems trying to resolve the conflict between
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7.5">
-        {products.map((product, index) => (
-          <ProductCard key={index} product={product} />
-        ))}
-      </div>
+      <ProductGrid products={products} />
     </div>
   );
 };

@@ -1,11 +1,16 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import ShopPage from "./pages/ShopPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 const App = () => {
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/shop" component={ShopPage} />
+        <Route path="/shop/:id" component={ProductDetailPage} />
+        {/* /shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId */}
       </Switch>
     </Router>
   );

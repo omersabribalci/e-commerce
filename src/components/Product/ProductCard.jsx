@@ -1,11 +1,17 @@
+import { useHistory } from "react-router-dom";
+
 const ProductCard = ({ product }) => {
+  const history = useHistory();
+  const handleClick = () => {
+    history.push(`/shop/${product.id}`);
+  };
+
   return (
-    <div className="flex flex-col flex-wrap md:flex-row transition-transform duration-300 hover:scale-105">
-      <img
-        src={product?.photo}
-        alt=""
-        className="w-full h-106.75 object-cover"
-      />
+    <div
+      className="flex flex-col flex-wrap md:flex-row transition-transform duration-300 hover:scale-105 justify-center cursor-pointer"
+      onClick={handleClick}
+    >
+      <img src={product?.photo} className="w-full h-106.75 object-cover" />
       <div className="flex flex-col px-6.25 pt-6.25 pb-8.75 text-center gap-2.5">
         <h5 className="text-h5 font-bold text-text">{product?.title}</h5>
         <p className="text-text-secondary font-bold text-link">
