@@ -4,7 +4,8 @@ import ProductGrid from "../components/Product/ProductGrid";
 import { products } from "../data/products";
 import PageContent from "../layouts/PageContent";
 import ProductInfoTabs from "../components/Product/ProductInfoTabs";
-import Breadcrumb from "../components/ui/BreadCrumb";
+import BreadCrumb from "../components/ui/BreadCrumb";
+
 //import { useParams } from "react-router-dom";
 
 const product = {
@@ -22,7 +23,7 @@ const ProductDetailPage = () => {
   return (
     <PageContent>
       <nav className="gap-5 py-6 flex flex-col lg:flex-row lg:px-50 lg:gap-0 items-center justify-between bg-gray-light-1">
-        <Breadcrumb />
+        <BreadCrumb />
       </nav>
       <ProductDetail product={product} />
       <ProductInfoTabs />
