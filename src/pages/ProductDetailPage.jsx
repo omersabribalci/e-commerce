@@ -4,6 +4,7 @@ import ProductGrid from "../components/Product/ProductGrid";
 import { products } from "../data/products";
 import PageContent from "../layouts/PageContent";
 import ProductInfoTabs from "../components/Product/ProductInfoTabs";
+import BreadCrumb from "../components/ui/BreadCrumb";
 
 //import { useParams } from "react-router-dom";
 
@@ -21,7 +22,9 @@ const ProductDetailPage = () => {
   //const { id } = useParams();
   return (
     <PageContent>
-      <nav className="gap-5 py-6 flex flex-col lg:flex-row lg:px-50 lg:gap-0 items-center justify-between bg-gray-light-1"></nav>
+      <nav className="gap-5 py-6 flex flex-col lg:flex-row lg:px-50 lg:gap-0 items-center justify-between bg-gray-light-1">
+        <BreadCrumb />
+      </nav>
       <ProductDetail product={product} />
       <ProductInfoTabs />
       <div className="px-10 lg:px-48.75 py-12 flex flex-col gap-6">
@@ -35,5 +38,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-
-//<BreadCrumb />
