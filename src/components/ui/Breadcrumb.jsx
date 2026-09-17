@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-const BreadCrumb = () => {
+const Breadcrumb = () => {
   const location = useLocation();
 
   const pathnames = location.pathname.split("/").filter((x) => x);
@@ -37,4 +37,4 @@ const BreadCrumb = () => {
   );
 };
 
-export default BreadCrumb;
+export default Breadcrumb;

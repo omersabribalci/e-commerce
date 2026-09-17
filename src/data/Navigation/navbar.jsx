@@ -17,7 +17,7 @@ export const navLink = [
   { text: "Home", link: "/" },
   { text: "Shop", link: "/shop" },
   { text: "About", link: "/about" },
-  { text: "Team", link: "/team" },
+  { text: "Blog", link: "/blog" },
   { text: "Contact", link: "/contact" },
   { text: "Pages", link: "/" },
 ];
