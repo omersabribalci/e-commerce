@@ -3,7 +3,7 @@ import { categories } from "../../data/Shop/categories";
 
 const Categories = () => {
   return (
-    <div className="flex flex-col items-center lg:flex-row gap-3.75 bg-gray-light-1 px-10 py-6 lg:px-44 lg:pb-12">
+    <div className="flex flex-col items-center lg:flex-row gap-3.75 bg-gray-light-1 px-10 py-6 lg:px-44 lg:pb-12 justify-center">
       {categories.map((category, index) => (
         <Link
           to={category?.link}

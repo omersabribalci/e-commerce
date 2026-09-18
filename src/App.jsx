@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ContactPage from "./pages/ContactPage";
-import TeamPage from "./pages/TeamPage";
+import AboutPage from "./pages/AboutPage";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
         <Route path="/shop/:id" component={ProductDetailPage} />
         {/* /shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId */}
         <Route path="/contact" component={ContactPage} />
-        <Route path="/team" component={TeamPage} />
+        <Route path="/about" component={AboutPage} />
       </Switch>
     </Router>
   );
