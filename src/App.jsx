@@ -4,6 +4,7 @@ import ShopPage from "./pages/ShopPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
+import RegisterPage from "./pages/RegisterPage";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         {/* /shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId */}
         <Route path="/contact" component={ContactPage} />
         <Route path="/about" component={AboutPage} />
+        <Route path="/signup" component={RegisterPage} />
       </Switch>
     </Router>
   );
