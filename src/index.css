@@ -61,6 +61,9 @@
   --breakpoint-lg: 60rem; /* 960px  - Bootstrap large tablet */
   --breakpoint-xl: 71.25rem; /* 1140px - Bootstrap desktop */
 
+  /* 1440px Figma frame'indeki 1050px ana içerik grid'i */
+  --container-site: 65.625rem;
+
   /* ============================================
      RENKLER
      ============================================ */

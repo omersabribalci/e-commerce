@@ -5,6 +5,7 @@ import { products } from "../data/products";
 import PageContent from "../layouts/PageContent";
 import ProductInfoTabs from "../components/Product/ProductInfoTabs";
 import BreadCrumb from "../components/ui/BreadCrumb";
+import Container from "../components/ui/Container";
 
 //import { useParams } from "react-router-dom";
 
@@ -22,16 +23,23 @@ const ProductDetailPage = () => {
   //const { id } = useParams();
   return (
     <PageContent>
-      <nav className="gap-5 py-6 flex flex-col lg:flex-row lg:px-50 lg:gap-0 items-center justify-between bg-gray-light-1">
-        <BreadCrumb />
-      </nav>
+      <div className="bg-gray-light-1">
+        <Container
+          as="nav"
+          className="gap-5 py-6 flex flex-col lg:flex-row lg:gap-0 items-center justify-between"
+        >
+          <BreadCrumb />
+        </Container>
+      </div>
       <ProductDetail product={product} />
       <ProductInfoTabs />
-      <div className="px-10 lg:px-48.75 py-12 flex flex-col gap-6">
-        <h3 className="text-h3 text-text font-bold">BESTSELLER PRODUCTS</h3>
-        <hr className="text-gray-light-2 lg:h-0.5" />
-        <ProductGrid products={products} />
-      </div>
+      <section>
+        <Container className="py-12 flex flex-col gap-6">
+          <h3 className="text-h3 text-text font-bold">BESTSELLER PRODUCTS</h3>
+          <hr className="text-gray-light-2 lg:h-0.5" />
+          <ProductGrid products={products} />
+        </Container>
+      </section>
       <BrandSection />
     </PageContent>
   );

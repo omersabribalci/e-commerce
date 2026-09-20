@@ -2,6 +2,7 @@ import team1 from "../../assets/about/team-1.jpg";
 import team2 from "../../assets/about/team-2.jpg";
 import team3 from "../../assets/about/team-3.jpg";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import Container from "../ui/Container";
 
 const Team = () => {
   const team = [
@@ -28,8 +29,7 @@ const Team = () => {
     },
   ];
   return (
-    <div className="px-16 lg:px-48.75">
-      <div className="py-7.5 lg:py-28 lg:px-55 flex flex-col items-center text-center gap-7.5">
+    <Container className="py-7.5 lg:py-28 flex flex-col items-center text-center gap-7.5">
         <h2 className="text-h2 text-text font-bold">Meet Our Team</h2>
         <p className="text-paragraph text-text-secondary">
           Problems trying to resolve the conflict between the two major realms
@@ -43,7 +43,8 @@ const Team = () => {
             >
               <img
                 src={item.image}
-                className="min-w-80 min-h-58 object-contain"
+                alt={item.name}
+                className="w-full max-w-80 min-h-58 object-contain"
               />
               <h5 className="text-h5 text-text font-bold">{item.name}</h5>
               <h6 className="text-h6 text-text-secondary font-bold">
@@ -65,8 +66,7 @@ const Team = () => {
             </div>
           ))}
         </div>
-      </div>
-    </div>
+    </Container>
   );
 };
 

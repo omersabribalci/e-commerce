@@ -9,20 +9,27 @@ import heroImage1 from "../../assets/hero/hero-slider-1.webp";
 import heroImage2 from "../../assets/hero/hero-slider-2.webp";
 import heroImage3 from "../../assets/hero/hero-slider-3.webp";
 import ButtonMd from "./ButtonMd";
+import Container from "./Container";
 
 const SlideContent = ({ eyebrow, title, description, buttonText }) => {
   return (
-    <div className="absolute top-1/2 left-12 z-10 w-[70%] translate-y-[-43%] text-text-light sm:left-[14.5%] sm:w-[42%]">
-      <p className="mb-6 font-body text-small font-bold sm:mb-8">{eyebrow}</p>
-      <h2 className="font-display text-h3 font-bold tracking-wide sm:text-h2 sm:whitespace-nowrap xl:text-h1">
-        {title}
-      </h2>
-      <p className="mt-5 max-w-80 font-body text-paragraph font-medium sm:mt-7 sm:text-h5">
-        {description}
-      </p>
-      <ButtonMd className="mt-6" variant="solid" color="info">
-        {buttonText}
-      </ButtonMd>
+    <div className="absolute inset-0 z-10 flex items-center">
+      <Container>
+        <div className="w-[70%] text-text-light sm:w-[42%]">
+          <p className="mb-6 font-body text-small font-bold sm:mb-8">
+            {eyebrow}
+          </p>
+          <h2 className="font-display text-h3 font-bold tracking-wide sm:text-h2 sm:whitespace-nowrap xl:text-h1">
+            {title}
+          </h2>
+          <p className="mt-5 max-w-80 font-body text-paragraph font-medium sm:mt-7 sm:text-h5">
+            {description}
+          </p>
+          <ButtonMd className="mt-6" variant="solid" color="info">
+            {buttonText}
+          </ButtonMd>
+        </div>
+      </Container>
     </div>
   );
 };
@@ -50,7 +57,7 @@ const Slider = () => {
         }}
       >
         <SwiperSlide>
-          <div className="relative h-115 w-full overflow-hidden sm:aspect-1439/716 sm:h-auto">
+          <div className="relative h-115 w-full overflow-hidden sm:h-[min(49.76vw,716px)]">
             <img
               className="absolute inset-0 h-full w-full object-cover object-[72%_center] md:object-center"
               src={heroImage1}
@@ -65,7 +72,7 @@ const Slider = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="relative h-115 w-full overflow-hidden sm:aspect-1439/716 sm:h-auto">
+          <div className="relative h-115 w-full overflow-hidden sm:h-[min(49.76vw,716px)]">
             <img
               className="absolute inset-0 h-full w-full object-cover object-center"
               src={heroImage2}
@@ -80,7 +87,7 @@ const Slider = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="relative h-115 w-full overflow-hidden sm:aspect-1439/716 sm:h-auto">
+          <div className="relative h-115 w-full overflow-hidden sm:h-[min(49.76vw,716px)]">
             <img
               className="absolute inset-0 h-full w-full object-cover object-center"
               src={heroImage3}

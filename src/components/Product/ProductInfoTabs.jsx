@@ -3,6 +3,7 @@ import ProductTabNav from "./ProductTabNav";
 import DescriptionContent from "./DescriptionContent";
 import AdditionalInfoContent from "./AdditionalInfoContent";
 import ReviewsContent from "./ReviewsContent";
+import Container from "../ui/Container";
 
 const ProductInfoTabs = ({ product }) => {
   const [activeTab, setActiveTab] = useState("description");
@@ -13,7 +14,7 @@ const ProductInfoTabs = ({ product }) => {
     { id: "reviews", label: `Reviews (${product?.reviewsCount || 0})` },
   ];
   return (
-    <div className="px-10 lg:px-48">
+    <Container>
       <ProductTabNav
         tabs={tabs}
         activeTab={activeTab}
@@ -27,7 +28,7 @@ const ProductInfoTabs = ({ product }) => {
         {activeTab === "info" && <AdditionalInfoContent product={product} />}
         {activeTab === "reviews" && <ReviewsContent product={product} />}
       </div>
-    </div>
+    </Container>
   );
 };
 

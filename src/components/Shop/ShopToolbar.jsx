@@ -1,6 +1,7 @@
 import { ListChecks } from "lucide-react";
 import { useState } from "react";
 import { RiLayoutGridFill } from "react-icons/ri";
+import Container from "../ui/Container";
 
 const options = [
   { value: "popularity", label: "Popularity" },
@@ -13,7 +14,7 @@ const ShopToolbar = () => {
   const [filter, setFilter] = useState("popularity");
 
   return (
-    <div className="gap-6 lg:gap-0 px-20 py-6 lg:px-48.75 flex flex-col lg:flex-row justify-between text-center items-center">
+    <Container className="gap-6 lg:gap-0 py-6 flex flex-col lg:flex-row justify-between text-center items-center">
       <h6 className="text-h6 text-text-secondary font-bold">
         Showing all 12 results
       </h6>
@@ -42,7 +43,7 @@ const ShopToolbar = () => {
           Filter
         </button>
       </div>
-    </div>
+    </Container>
   );
 };
 

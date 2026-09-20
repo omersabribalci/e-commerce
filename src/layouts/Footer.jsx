@@ -1,24 +1,31 @@
 import { FooterSection } from "../components/Footer/FooterSection";
+import Container from "../components/ui/Container";
 import { footerSectionTitles, mediaIcons } from "../data/Footer/footerSection";
 
 const Footer = () => {
   return (
-    <>
-      <div className="px-11 md:px-50 flex flex-col sm:flex-row py-10 justify-between gap-3 bg-gray-light-1">
-        <h3 className="text-text font-display font-bold text-h3">Bandage</h3>
-        <ul className="flex gap-4 text-primary">
-          {mediaIcons.map((item, index) => (
-            <li key={index}>
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
-                {item.icon}
-              </a>
-            </li>
-          ))}
-        </ul>
+    <footer>
+      <div className="bg-gray-light-1">
+        <Container className="flex flex-col sm:flex-row py-10 justify-between gap-3">
+          <h3 className="text-text font-display font-bold text-h3">Bandage</h3>
+          <ul className="flex gap-4 text-primary">
+            {mediaIcons.map((item, index) => (
+              <li key={index}>
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  {item.icon}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Container>
       </div>
-      <hr className="hidden md:block text-[#E6E6E6]" />
-      <div className="bg-[#FFFFFF] px-11 md:px-50">
-        <div className="flex flex-col justify-between lg:flex-row py-8 md:gap-10">
+      <div className="bg-bg-light">
+        <Container>
+          <hr className="hidden md:block text-[#E6E6E6]" />
+        </Container>
+      </div>
+      <div className="bg-bg-light">
+        <Container className="flex flex-col justify-between lg:flex-row py-8 md:gap-10">
           {footerSectionTitles.map((item, index) => (
             <FooterSection
               key={index}
@@ -43,14 +50,16 @@ const Footer = () => {
             </div>
             <p className="text-text-secondary mt-5">Lorem impsum dolor amit</p>
           </div>
-        </div>
+        </Container>
       </div>
       <div className="bg-gray-light-1">
-        <p className="py-6 text-h6 text-center text-text-secondary font-bold">
-          Made With Love By Figmaland All Right Reserved{" "}
-        </p>
+        <Container>
+          <p className="py-6 text-h6 text-center text-text-secondary font-bold">
+            Made With Love By Figmaland All Right Reserved{" "}
+          </p>
+        </Container>
       </div>
-    </>
+    </footer>
   );
 };
 
