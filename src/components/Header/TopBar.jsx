@@ -6,10 +6,9 @@ const TopBar = () => {
   return (
     <div className="hidden bg-bg-dark text-text-light xl:block">
       <Container
-        as="nav"
         className="flex flex-row items-center justify-between py-4 whitespace-nowrap"
       >
-        <div className="flex flex-row gap-4 text-small items-center">
+        <address className="flex flex-row gap-4 text-small items-center not-italic">
           <div className="flex gap-2 items-center">
             <Phone color="white" />
             <a href="tel:+902255550118">(225) 555-0118</a>
@@ -20,11 +19,11 @@ const TopBar = () => {
               michelle.rivera@example.com
             </a>
           </div>
-        </div>
-        <div className="font-bold text-h6">
+        </address>
+        <p className="font-bold text-h6">
           Follow Us and get a chance to win 80% off
-        </div>
-        <div className="flex gap-2">
+        </p>
+        <nav className="flex gap-2" aria-label="Social media">
           <span className="font-bold text-h6">Follow Us :</span>
           <ul className="flex flex-row items-center gap-4">
             {mediaIcons.map((item, index) => (
@@ -35,7 +34,7 @@ const TopBar = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
       </Container>
     </div>
   );

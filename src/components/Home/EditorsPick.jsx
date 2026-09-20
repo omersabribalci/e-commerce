@@ -16,9 +16,9 @@ const EditorsPick = () => {
   return (
     <section className="bg-gray-light-1">
       <Container className="py-20">
-        <h3 className="text-h3 text-text font-bold text-center">
+        <h2 className="text-h3 text-text font-bold text-center">
           EDITOR’S PICK
-        </h3>
+        </h2>
         <p className="text-center mt-2.5 text-text-secondary mb-12">
           Problems trying to resolve the conflict between
         </p>

@@ -10,7 +10,7 @@ const ProductDetail = ({ product }) => {
       <Container className="flex flex-col lg:flex-row gap-7.5 py-12 lg:pb-12 lg:pt-0">
         <img src={productImg} alt="" className="object-contain" />
         <div className="px-6 py-2.75 gap-5.5 lg:px-5.5 lg:gap-6.75 flex flex-col">
-          <h4 className="text-text text-h4">Floating Phone</h4>
+          <h1 className="text-text text-h4">Floating Phone</h1>
           <div className="flex flex-row">
             {Array.from({ length: totalStars }).map((_, index) => (
               <Star

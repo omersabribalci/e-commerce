@@ -1,27 +1,31 @@
 import { ChevronRight } from "lucide-react";
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
+
 const BreadCrumb = () => {
   const location = useLocation();
 
   const pathnames = location.pathname.split("/").filter((x) => x);
   return (
-    <ul className="flex flex-row">
-      <li className="text-link text-text font-bold">
-        <Link to="/">Home</Link>
-      </li>
-      {pathnames.map((value, index) => {
-        const to = `/${pathnames.slice(0, index + 1).join("/")}`;
-        const isLast = index === pathnames.length - 1;
-        const formattedValue = value.charAt(0).toUpperCase() + value.slice(1);
-        return (
-          <React.Fragment key={to}>
-            <li>
-              <ChevronRight className="text-muted font-bold text-h6" />
-            </li>
-            <li>
+    <nav aria-label="Breadcrumb">
+      <ol className="flex flex-row items-center">
+        <li className="text-link text-text font-bold">
+          <Link to="/">Home</Link>
+        </li>
+        {pathnames.map((value, index) => {
+          const to = `/${pathnames.slice(0, index + 1).join("/")}`;
+          const isLast = index === pathnames.length - 1;
+          const formattedValue = value.charAt(0).toUpperCase() + value.slice(1);
+          return (
+            <li key={to} className="flex items-center">
+              <ChevronRight
+                className="text-muted font-bold text-h6"
+                aria-hidden="true"
+              />
               {isLast ? (
-                <span className="text-muted font-bold text-h6">
+                <span
+                  className="text-muted font-bold text-h6"
+                  aria-current="page"
+                >
                   {formattedValue}
                 </span>
               ) : (
@@ -30,10 +34,10 @@ const BreadCrumb = () => {
                 </Link>
               )}
             </li>
-          </React.Fragment>
-        );
-      })}
-    </ul>
+          );
+        })}
+      </ol>
+    </nav>
   );
 };
 

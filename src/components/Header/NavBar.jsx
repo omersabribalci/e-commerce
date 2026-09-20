@@ -8,11 +8,16 @@ const NavBar = () => {
     <div className="bg-bg-light">
       <Container
         as="nav"
+        aria-label="Primary navigation"
         className="flex flex-col xl:flex-row gap-8 xl:gap-30 justify-between items-center py-4"
       >
-        <div>
-          <h3 className="text-text font-display font-bold text-h3">Bandage</h3>
-        </div>
+        <Link
+          to="/"
+          className="text-text font-display font-bold text-h3"
+          aria-label="Bandage home"
+        >
+          Bandage
+        </Link>
         <div className="text-mobile-menu xl:text-link xl:flex-row flex flex-col gap-8 xl:gap-32 items-center text-text-secondary font-bold">
           <ul className="flex flex-col xl:flex-row gap-3.5 items-center">
             {navLink.map((item, index) => (

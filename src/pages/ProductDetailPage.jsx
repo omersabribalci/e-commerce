@@ -25,7 +25,6 @@ const ProductDetailPage = () => {
     <PageContent>
       <div className="bg-gray-light-1">
         <Container
-          as="nav"
           className="gap-5 py-6 flex flex-col lg:flex-row lg:gap-0 items-center justify-between"
         >
           <BreadCrumb />
@@ -35,7 +34,7 @@ const ProductDetailPage = () => {
       <ProductInfoTabs />
       <section>
         <Container className="py-12 flex flex-col gap-6">
-          <h3 className="text-h3 text-text font-bold">BESTSELLER PRODUCTS</h3>
+          <h2 className="text-h3 text-text font-bold">BESTSELLER PRODUCTS</h2>
           <hr className="text-gray-light-2 lg:h-0.5" />
           <ProductGrid products={products} />
         </Container>
