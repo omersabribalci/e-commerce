@@ -9,30 +9,36 @@ import {
 import { useEffect, useState } from "react";
 import api from "../services/axiosInstance";
 import { LoaderCircle } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { getRoles } from "../store/actions/clientActions";
+import { toast } from "react-toastify";
 
 // todo spinner and email activation message check !!
 
 const RegisterPage = () => {
+  const roles = useSelector((state) => state.client.roles);
   const history = useHistory();
-
-  const [roles, setRoles] = useState([]);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getRoles = async () => {
+    const helper = async () => {
       try {
+        if (roles.length > 0) {
+          setLoading(false);
+          return;
+        }
         setLoading(true);
-        const res = await api.get("/roles");
-        setRoles(res.data);
+        await dispatch(getRoles());
       } catch (err) {
-        setError(err.message || "Veri çekilirken bir hata oluştu");
+        setError(err.response?.data?.message || "Fetching Error");
       } finally {
         setLoading(false);
       }
     };
-    getRoles();
-  }, []);
+    helper();
+  }, [roles.length, dispatch]);
 
   const { register, handleSubmit, control, formState, getFieldState } = useForm(
     {
@@ -51,11 +57,12 @@ const RegisterPage = () => {
       // eslint-disable-next-line no-unused-vars
       const { confirmPassword, ...rest } = formData;
       const res = await api.post("/signup", rest);
+      toast.success("Successfull!");
       history.push("/login", {
         successMessage: res.message,
       });
     } catch (err) {
-      setError(err.message || "Register Error");
+      setError(err.response?.data?.message || "Register Error");
     }
   };
 
@@ -73,12 +80,12 @@ const RegisterPage = () => {
   return (
     <div className="min-h-screen md:grid md:grid-cols-2">
       <div
-        className="hidden bg-cover bg-center md:sticky md:top-0 md:block md:h-screen md:self-start"
+        className="hidden bg-cover bg-center md:sticky md:top-0 md:block md:h-screen md:self-start rounded-r-4xl"
         style={{ backgroundImage: `url(${bg})` }}
       ></div>
 
       <div className="grid min-h-screen place-items-center bg-bg-light px-6 py-9 sm:px-10 lg:px-12 xl:px-16">
-        <div className="flex w-full max-w-lg flex-col gap-8">
+        <div className="flex w-full max-w-lg flex-col gap-8 rounded-4xl shadow-2xl shadow-purple-300 p-4">
           <h1 className="text-center text-text text-h3 font-bold">
             Create an account
           </h1>
@@ -114,7 +121,7 @@ const RegisterPage = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-[#6938EF] rounded-[40px] p-4 text-h5 text-white cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-[#531bf0]"
+              className="bg-[#6938EF] rounded-[40px] p-4 text-h5 text-white cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-[#531bf0] flex items-center justify-center gap-2"
             >
               {isSubmitting && (
                 <LoaderCircle

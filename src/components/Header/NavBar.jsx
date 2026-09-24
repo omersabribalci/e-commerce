@@ -2,8 +2,11 @@ import { CircleUser } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navIcons, navLink } from "../../data/Navigation/navbar";
 import Container from "../ui/Container";
+import { useSelector } from "react-redux";
+import Gravatar from "react-gravatar";
 
 const NavBar = () => {
+  const user = useSelector((state) => state.client.user);
   return (
     <div className="bg-bg-light">
       <Container
@@ -29,10 +32,22 @@ const NavBar = () => {
 
           <ul className="flex items-center gap-8 flex-col xl:flex-row text-primary">
             <li>
-              <Link to="/login" className="flex gap-2 items-center">
-                <CircleUser />
-                <span className="whitespace-nowrap">Login / Register</span>
-              </Link>
+              {user.email ? (
+                <div className="flex flex-row gap-2 items-center justify-center">
+                  <Gravatar
+                    email={user?.email}
+                    size={40}
+                    default="wavatar"
+                    className="rounded-4xl"
+                  />
+                  <p className="text-h6 text-text-secondary">{user.name}</p>
+                </div>
+              ) : (
+                <Link to="/login" className="flex gap-2 items-center">
+                  <CircleUser />
+                  <span className="whitespace-nowrap">Login / Register</span>
+                </Link>
+              )}
             </li>
             {navIcons.map((item, index) => (
               <li key={index}>
