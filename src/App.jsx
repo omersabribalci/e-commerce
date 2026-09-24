@@ -7,14 +7,27 @@ import AboutPage from "./pages/AboutPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import { Bounce, ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { verifyToken } from "./store/actions/clientActions";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(verifyToken());
+  }, [dispatch]);
+
   return (
     <>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
-        <Route path="/shop/:id" component={ProductDetailPage} />
+        <Route
+          path="/shop/:gender/:categoryName/:categoryId"
+          component={ShopPage}
+        />
+        {/* <Route path="/shop/:id" component={ProductDetailPage} /> */}
         {/* /shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId */}
         <Route path="/contact" component={ContactPage} />
         <Route path="/about" component={AboutPage} />

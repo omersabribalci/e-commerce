@@ -70,7 +70,7 @@ export const LoginPage = () => {
 
             <button
               type="submit"
-              // disabled={isSubmitting}
+              disabled={isSubmitting}
               className="bg-[#6938EF] rounded-[40px] p-4 text-h5 text-white cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-[#531bf0] flex items-center justify-center gap-2"
             >
               {isSubmitting && (

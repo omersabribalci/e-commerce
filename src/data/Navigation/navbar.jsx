@@ -1,5 +1,5 @@
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import { Heart, Search, ShoppingCart } from "lucide-react";
+import { ChevronDown, Heart, Search, ShoppingCart } from "lucide-react";
 export const mediaIcons = [
   { icon: <FaInstagram />, link: "https://www.instagram.com/" },
   { icon: <FaYoutube />, link: "https://www.youtube.com/" },
@@ -15,9 +15,8 @@ export const navIcons = [
 
 export const navLink = [
   { text: "Home", link: "/" },
-  { text: "Shop", link: "/shop" },
+  { text: "Shop", icon: <ChevronDown /> },
   { text: "About", link: "/about" },
   { text: "Blog", link: "/blog" },
   { text: "Contact", link: "/contact" },
-  { text: "Pages", link: "/" },
 ];

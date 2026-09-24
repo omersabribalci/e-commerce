@@ -1,43 +1,50 @@
-import category1 from "../../assets/categories/category1.png";
-import category2 from "../../assets/categories/category2.png";
-import category3 from "../../assets/categories/category3.png";
-import category4 from "../../assets/categories/category4.png";
-import category5 from "../../assets/categories/category5.png";
+// {
+//   id: 2,
+//   image: category2,
+//   name: "CLOTHS",
+//   itemCount: 5,
+//   link: "/shop",
+// },
 
 export const categories = [
   {
     id: 1,
-    image: category1,
-    name: "CLOTHS",
-    itemCount: 5,
-    link: "/shop",
+    code: "k:tisort",
+    title: "Tişört",
+    img: "https://workintech-fe-ecommerce.onrender.com/assets/category-img/category_kadın_tişört.jpg",
+    rating: 4.2,
+    gender: "k",
   },
   {
     id: 2,
-    image: category2,
-    name: "CLOTHS",
-    itemCount: 5,
-    link: "/shop",
+    code: "k:ayakkabi",
+    title: "Ayakkabı",
+    img: "https://workintech-fe-ecommerce.onrender.com/assets/category-img/category_kadın_ayakkabı.jpg",
+    rating: 4.9,
+    gender: "k",
   },
   {
     id: 3,
-    image: category3,
-    name: "CLOTHS",
-    itemCount: 5,
-    link: "/shop",
+    code: "k:ceket",
+    title: "Ceket",
+    img: "https://workintech-fe-ecommerce.onrender.com/assets/category-img/category_kadın_ceket.jpg",
+    rating: 3.8,
+    gender: "k",
   },
   {
     id: 4,
-    image: category4,
-    name: "CLOTHS",
-    itemCount: 5,
-    link: "/shop",
+    code: "k:elbise",
+    title: "Elbise",
+    img: "https://workintech-fe-ecommerce.onrender.com/assets/category-img/category_kadın_elbise.jpg",
+    rating: 4.1,
+    gender: "k",
   },
   {
     id: 5,
-    image: category5,
-    name: "CLOTHS",
-    itemCount: 5,
-    link: "/shop",
+    code: "k:etek",
+    title: "Etek",
+    img: "https://workintech-fe-ecommerce.onrender.com/assets/category-img/category_kadın_etek.jpg",
+    rating: 3.9,
+    gender: "k",
   },
 ];
