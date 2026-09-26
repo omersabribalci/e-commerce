@@ -12,7 +12,7 @@ const initialState = {
   categories: [],
   productList: [],
   total: 0,
-  limit: 25,
+  limit: 20,
   offset: 0,
   filter: "",
   fetchState: "NOT_FETCHED",

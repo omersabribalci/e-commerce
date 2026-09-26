@@ -67,3 +67,48 @@ export const getCategories = () => {
     }
   };
 };
+
+export const getProducts = (
+  categoryId = "",
+  sort = "",
+  filter = "",
+  limit,
+  offset,
+) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setFetchState("FETCHING"));
+
+      const params = {};
+
+      if (categoryId) {
+        params.category = categoryId;
+      }
+
+      if (sort) {
+        params.sort = sort;
+      }
+
+      if (filter) {
+        params.filter = filter;
+      }
+
+      if (limit) {
+        params.limit = limit;
+      }
+
+      if (offset) {
+        params.offset = offset;
+      }
+
+      const response = await api.get("/products", { params });
+
+      dispatch(setProductList(response.data.products));
+      dispatch(setTotal(response.data.total));
+      dispatch(setFetchState("FETCHED"));
+    } catch (error) {
+      dispatch(setFetchState("FAILED"));
+      console.error(error);
+    }
+  };
+};

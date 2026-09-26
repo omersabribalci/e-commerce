@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 
 import Container from "../ui/Container";
+import { useSelector } from "react-redux";
 
-const Categories = ({ categories }) => {
+const Categories = () => {
+  const categories = useSelector((state) => state.product.categories);
+
+  const topCategories = [...categories]
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 5);
+
   return (
     <section className="bg-gray-light-1">
       <Container className="flex flex-col items-center lg:flex-row gap-3.75 py-6 lg:pb-12 justify-center">
-        {categories.map((category) => (
+        {topCategories.map((category) => (
           <Link
             to={`/shop/${category.gender === "k" ? "kadin" : "erkek"}/${category.code.split(":")[1]}/${category.id}`}
             key={category.id}
