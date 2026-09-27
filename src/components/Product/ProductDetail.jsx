@@ -1,23 +1,38 @@
-import { Eye, Heart, ShoppingCart, Star } from "lucide-react";
-import productImg from "../../assets/products/product-detail-1.jpg";
+import { ArrowLeft, Eye, Heart, ShoppingCart, Star } from "lucide-react";
+import { useHistory } from "react-router-dom";
 import Container from "../ui/Container";
 
 const ProductDetail = ({ product }) => {
   const totalStars = 5;
-  const rating = 5;
+  const history = useHistory();
+
   return (
     <section className="bg-gray-light-1">
+      <Container className="pt-6">
+        <button
+          type="button"
+          onClick={() => history.goBack()}
+          className="inline-flex items-center gap-2 rounded-md border border-gray-light-2 px-4 py-2 text-link font-bold text-primary cursor-pointer transition-colors hover:bg-bg-light"
+        >
+          <ArrowLeft size={18} aria-hidden="true" />
+          Back
+        </button>
+      </Container>
       <Container className="flex flex-col lg:flex-row gap-7.5 py-12 lg:pb-12 lg:pt-0">
-        <img src={productImg} alt="" className="object-contain" />
+        <img
+          src={product?.images?.[0]?.url}
+          alt={product?.name ?? ""}
+          className="h-80 w-full object-contain lg:h-112.5 lg:max-w-125"
+        />
         <div className="px-6 py-2.75 gap-5.5 lg:px-5.5 lg:gap-6.75 flex flex-col">
-          <h1 className="text-text text-h4">Floating Phone</h1>
+          <h1 className="text-text text-h4">{product?.name}</h1>
           <div className="flex flex-row">
             {Array.from({ length: totalStars }).map((_, index) => (
               <Star
                 key={index}
                 strokeWidth={0.3}
                 className={
-                  index < rating ? "fill-[#F3CD03]" : "fill-bg-light"
+                  index < product?.rating ? "fill-[#F3CD03]" : "fill-bg-light"
                 }
               />
             ))}
@@ -25,27 +40,29 @@ const ProductDetail = ({ product }) => {
               10 reviews
             </span>
           </div>
-          <span className="text-h3 text-text font-bold">$1,139.33</span>
+          <span className="text-h3 text-text font-bold">
+            {product?.price} TL
+          </span>
           <div className="flex flex-row gap-2">
             <span className="text-h6 text-text-secondary font-bold">
               Availability :
             </span>
-            <span className="text-h6 text-primary font-bold">In Stock</span>
+            <span className="text-h6 text-primary font-bold">
+              {product?.stock > 0 ? "In Stock" : "Not Available"}
+            </span>
           </div>
           <p className="text-paragraph text-text-secondary">
-            Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
-            RELIT official consequent door ENIM RELIT Mollie. Excitation venial
-            consequent sent nostrum met.
+            {product?.description}
           </p>
           <hr className="text-muted" />
-          <div className="flex flex-row gap-1.5">
+          {/* <div className="flex flex-row gap-1.5">
             {product?.colors.map((color, index) => (
               <button
                 key={index}
                 className={`${color} w-7.5 h-7.5 rounded-full cursor-pointer hover:scale-110 transition-transform`}
               />
             ))}
-          </div>
+          </div> */}
           <div className="flex flex-row flex-wrap gap-2.5">
             <select
               name=""

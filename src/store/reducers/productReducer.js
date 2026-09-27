@@ -1,6 +1,7 @@
 import {
   SET_CATEGORIES,
   SET_PRODUCT_LIST,
+  SET_PRODUCT,
   SET_TOTAL,
   SET_FETCH_STATE,
   SET_LIMIT,
@@ -11,6 +12,7 @@ import {
 const initialState = {
   categories: [],
   productList: [],
+  product: null,
   total: 0,
   limit: 20,
   offset: 0,
@@ -31,6 +33,11 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         productList: action.payload,
+      };
+    case SET_PRODUCT:
+      return {
+        ...state,
+        product: action.payload,
       };
     case SET_TOTAL:
       return {

@@ -2,6 +2,7 @@ import api from "../../services/axiosInstance";
 
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
+export const SET_PRODUCT = "SET_PRODUCT";
 export const SET_TOTAL = "SET_TOTAL";
 export const SET_FETCH_STATE = "SET_FETCH_STATE";
 export const SET_LIMIT = "SET_LIMIT";
@@ -19,6 +20,13 @@ export const setProductList = (productList) => {
   return {
     type: SET_PRODUCT_LIST,
     payload: productList,
+  };
+};
+
+export const setProduct = (product) => {
+  return {
+    type: SET_PRODUCT,
+    payload: product,
   };
 };
 
@@ -105,6 +113,21 @@ export const getProducts = (
 
       dispatch(setProductList(response.data.products));
       dispatch(setTotal(response.data.total));
+      dispatch(setFetchState("FETCHED"));
+    } catch (error) {
+      dispatch(setFetchState("FAILED"));
+      console.error(error);
+    }
+  };
+};
+
+export const getProductById = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setFetchState("FETCHING"));
+      dispatch(setProduct(null));
+      const response = await api.get(`/products/${id}`);
+      dispatch(setProduct(response.data));
       dispatch(setFetchState("FETCHED"));
     } catch (error) {
       dispatch(setFetchState("FAILED"));

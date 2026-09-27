@@ -1,9 +1,20 @@
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { slugify } from "../../utils/slugify";
 
 const ProductCard = ({ product }) => {
   const history = useHistory();
+  const categories = useSelector((state) => state.product.categories);
+  const matchedCategory = categories.find((c) => c.id === product.category_id);
   const handleClick = () => {
-    history.push(`/shop/${product.id}`);
+    if (!matchedCategory?.code || !product.name) return;
+
+    const gender = matchedCategory.code.startsWith("k") ? "kadin" : "erkek";
+    const categoryName = matchedCategory.code.split(":")[1];
+
+    history.push(
+      `/shop/${gender}/${categoryName}/${product.category_id}/${slugify(product.name)}/${product.id}`,
+    );
   };
 
   return (
@@ -12,18 +23,21 @@ const ProductCard = ({ product }) => {
       onClick={handleClick}
     >
       <img
-        src={product?.images[0].url}
+        src={product.images?.[0]?.url ?? product.photo}
+        alt={product.name ?? product.title ?? ""}
         className="w-full h-106.75 object-cover"
       />
       <div className="flex flex-col px-6.25 pt-6.25 pb-8.75 text-center gap-2.5">
-        <h5 className="text-h5 font-bold text-text">{product?.name}</h5>
+        <h5 className="text-h5 font-bold text-text">
+          {product.name ?? product.title}
+        </h5>
         <p className="text-text-secondary font-bold text-link">
-          {product?.description}
+          {product.description ?? product.subtitle}
         </p>
         <div className="flex flex-row justify-center gap-2">
           {/* <span className="text-h5 text-muted font-bold">{product?.price}</span> */}
           <span className="text-h5 text-secondary-1 font-bold">
-            {product?.price} TL
+            {product.price != null ? `${product.price} TL` : product.price2}
           </span>
         </div>
         {/* <div className="flex items-center justify-center gap-1.5 mt-2.5">

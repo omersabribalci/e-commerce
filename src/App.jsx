@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
@@ -13,10 +13,16 @@ import { verifyToken } from "./store/actions/clientActions";
 
 const App = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(verifyToken());
   }, [dispatch]);
+
+  // Sayfa değiştiğinde önceki sayfanın kaydırma konumunu taşımayalım.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>
@@ -24,11 +30,14 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
         <Route
+          path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId"
+          component={ProductDetailPage}
+        />
+        <Route
           path="/shop/:gender/:categoryName/:categoryId"
           component={ShopPage}
         />
-        {/* <Route path="/shop/:id" component={ProductDetailPage} /> */}
-        {/* /shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId */}
+
         <Route path="/contact" component={ContactPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/login" component={LoginPage} />
