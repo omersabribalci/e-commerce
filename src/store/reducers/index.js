@@ -6,5 +6,5 @@ import { shoppingCartReducer } from "./shoppingCartReducer";
 export const reducers = combineReducers({
   client: clientReducer,
   product: productReducer,
-  ShoppingCart: shoppingCartReducer,
+  shoppingCart: shoppingCartReducer,
 });

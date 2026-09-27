@@ -29,6 +29,7 @@ const ProductDetailPage = () => {
           <BreadCrumb />
         </Container>
       </div>
+
       {fetchState === "FETCHING" ? (
         <Loading />
       ) : (

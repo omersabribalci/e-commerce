@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Gravatar from "react-gravatar";
 import { useEffect, useRef, useState } from "react";
 import { getCategories } from "../../store/actions/productActions";
+import CartDropdown from "./CartDropdown";
 
 const NavBar = () => {
   const categories = useSelector((state) => state.product.categories);
@@ -150,7 +151,7 @@ const NavBar = () => {
             })}
           </ul>
 
-          <ul className="flex items-center gap-8 flex-col xl:flex-row text-primary">
+          <ul className="relative flex items-center gap-8 flex-col xl:flex-row text-primary">
             <li>
               {user.email ? (
                 <div className="flex flex-row gap-2 items-center justify-center">
@@ -170,8 +171,12 @@ const NavBar = () => {
               )}
             </li>
             {navIcons.map((item, index) => (
-              <li key={index}>
-                <Link to={item.link}>{item.icon}</Link>
+              <li key={index} className={item.link === "/cart" ? "xl:relative" : ""}>
+                {item.link === "/cart" ? (
+                  <CartDropdown icon={item.icon} />
+                ) : (
+                  <Link to={item.link}>{item.icon}</Link>
+                )}
               </li>
             ))}
           </ul>

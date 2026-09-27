@@ -1,10 +1,26 @@
 import { ArrowLeft, Eye, Heart, ShoppingCart, Star } from "lucide-react";
 import { useHistory } from "react-router-dom";
 import Container from "../ui/Container";
+import { useDispatch, useSelector } from "react-redux";
+import { setCart } from "../../store/actions/shoppingCartActions";
 
 const ProductDetail = ({ product }) => {
+  const cart = useSelector((state) => state.shoppingCart.cart);
+  const dispatch = useDispatch();
   const totalStars = 5;
   const history = useHistory();
+
+  const handleClick = () => {
+    const updatedCart = cart.some((item) => item.product.id === product.id)
+      ? cart.map((item) =>
+          item.product.id === product.id
+            ? { ...item, count: item.count + 1 }
+            : item,
+        )
+      : [...cart, { count: 1, product }];
+
+    dispatch(setCart(updatedCart));
+  };
 
   return (
     <section className="bg-gray-light-1">
@@ -74,7 +90,10 @@ const ProductDetail = ({ product }) => {
             <button className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105">
               <Heart strokeWidth={1} className="text-text" />
             </button>
-            <button className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105">
+            <button
+              onClick={handleClick}
+              className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105"
+            >
               <ShoppingCart strokeWidth={1} className="text-text" />
             </button>
             <button className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105">

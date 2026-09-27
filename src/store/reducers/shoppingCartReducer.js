@@ -11,10 +11,10 @@ const initialState = {
 };
 
 /* cart: {Object Array} will keep products are being bought
-  [
-      {  count: 1, product: { id: “1235”, … }  },
-      {  count: 3, product: { id: “1236”, … }  },
-  ]
+ cart: [
+   {  count: 1, checked: true, product: { id: “1235”, … }  },
+   {  count: 3, checked: true, product: { id: “1236”, … }  },
+]
 */
 
 export const shoppingCartReducer = (state = initialState, action) => {
