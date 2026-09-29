@@ -27,10 +27,9 @@ const ContactPage = () => {
     <PageContent>
       <Container
         as="section"
-        aria-labelledby="contact-title"
         className="py-28 flex flex-col items-center text-center gap-7.5"
       >
-        <h1 id="contact-title" className="text-h2 text-text font-bold">
+        <h1 className="text-h2 text-text font-bold">
           Get answers to all your <br /> questions.
         </h1>
         <h4 className="text-h4 text-text-secondary">
@@ -38,7 +37,7 @@ const ContactPage = () => {
           realms of Classical physics:
         </h4>
         <ButtonMd className="w-68 h-14">CONTACT OUR COMPANY</ButtonMd>
-        <nav aria-label="Social media">
+        <nav>
           <ul className="flex flex-row gap-8.5 p-2.5">
             {mediaIcons.map((item, index) => (
               <li key={index}>

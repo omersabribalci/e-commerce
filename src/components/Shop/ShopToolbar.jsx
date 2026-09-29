@@ -43,8 +43,6 @@ const ShopToolbar = ({ sort, setSort, view, setView }) => {
         <button
           type="button"
           onClick={() => setView("grid")}
-          aria-label="Ürünleri grid olarak göster"
-          aria-pressed={view === "grid"}
           className={`border-gray-light-2 border p-2 rounded-[5px] cursor-pointer transition-colors ${view === "grid" ? "bg-primary text-text-light" : "text-text hover:bg-gray-light-1"}`}
         >
           <RiLayoutGridFill className="h-4 w-4" />
@@ -52,17 +50,12 @@ const ShopToolbar = ({ sort, setSort, view, setView }) => {
         <button
           type="button"
           onClick={() => setView("list")}
-          aria-label="Ürünleri liste olarak göster"
-          aria-pressed={view === "list"}
           className={`border-gray-light-2 border p-2 rounded-[5px] cursor-pointer transition-colors ${view === "list" ? "bg-primary text-text-light" : "text-text hover:bg-gray-light-1"}`}
         >
           <ListChecks className="h-4 w-4" />
         </button>
       </div>
       <div className="relative w-full sm:w-64 lg:w-52">
-        <label htmlFor="search" className="sr-only">
-          Search products
-        </label>
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-secondary" />
         <input
           value={searchText}

@@ -17,6 +17,5 @@ export const navLink = [
   { text: "Home", link: "/" },
   { text: "Shop", icon: <ChevronDown /> },
   { text: "About", link: "/about" },
-  { text: "Blog", link: "/blog" },
   { text: "Contact", link: "/contact" },
 ];

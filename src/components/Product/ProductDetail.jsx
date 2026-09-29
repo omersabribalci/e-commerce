@@ -34,7 +34,7 @@ const ProductDetail = ({ product }) => {
           onClick={() => history.goBack()}
           className="inline-flex items-center gap-2 rounded-md border border-gray-light-2 px-4 py-2 text-link font-bold text-primary cursor-pointer transition-colors hover:bg-bg-light"
         >
-          <ArrowLeft size={18} aria-hidden="true" />
+          <ArrowLeft size={18} />
           Back
         </button>
       </Container>
@@ -98,7 +98,6 @@ const ProductDetail = ({ product }) => {
               type="button"
               onClick={handleClick}
               disabled={atStockLimit}
-              aria-label="Sepete ekle"
               className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
             >
               <ShoppingCart strokeWidth={1} className="text-text" />

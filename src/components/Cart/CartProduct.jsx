@@ -47,7 +47,6 @@ const CartProduct = ({ cartProduct }) => {
             onChange={handleSelect}
             type="checkbox"
             checked={cartProduct?.checked}
-            aria-label={`${cartProduct.product.name} ürününü seç`}
             className="h-4 w-4 shrink-0 cursor-pointer accent-primary"
           />
           <img
@@ -70,7 +69,6 @@ const CartProduct = ({ cartProduct }) => {
               type="button"
               onClick={() => handleCount("remove")}
               disabled={cartProduct.count === 1}
-              aria-label={`${cartProduct.product.name} adedini azalt`}
               className="h-9 w-9 cursor-pointer text-primary hover:bg-gray-light-1 disabled:cursor-not-allowed disabled:text-muted"
             >
               −
@@ -82,7 +80,6 @@ const CartProduct = ({ cartProduct }) => {
               type="button"
               onClick={() => handleCount("add")}
               disabled={cartProduct.count >= cartProduct.product.stock}
-              aria-label={`${cartProduct.product.name} adedini artır`}
               className="h-9 w-9 cursor-pointer text-primary hover:bg-gray-light-1 disabled:cursor-not-allowed disabled:text-muted"
             >
               +
@@ -97,10 +94,9 @@ const CartProduct = ({ cartProduct }) => {
           <button
             type="button"
             onClick={handleDelete}
-            aria-label={`${cartProduct.product.name} ürününü sepetten sil`}
             className="rounded-md p-2 text-text-secondary cursor-pointer transition-colors hover:bg-gray-light-1 hover:text-danger"
           >
-            <Trash size={20} aria-hidden="true" />
+            <Trash size={20} />
           </button>
         </div>
       </div>

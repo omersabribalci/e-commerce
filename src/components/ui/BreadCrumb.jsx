@@ -6,7 +6,7 @@ const BreadCrumb = () => {
 
   const pathnames = location.pathname.split("/").filter((x) => x);
   return (
-    <nav aria-label="Breadcrumb">
+    <nav>
       <ol className="flex flex-row items-center">
         <li className="text-link text-text font-bold">
           <Link to="/">Home</Link>
@@ -19,13 +19,9 @@ const BreadCrumb = () => {
             <li key={to} className="flex items-center">
               <ChevronRight
                 className="text-muted font-bold text-h6"
-                aria-hidden="true"
               />
               {isLast ? (
-                <span
-                  className="text-muted font-bold text-h6"
-                  aria-current="page"
-                >
+                <span className="text-muted font-bold text-h6">
                   {formattedValue}
                 </span>
               ) : (

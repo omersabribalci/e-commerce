@@ -14,7 +14,7 @@ import Container from "./Container";
 const SlideContent = ({ eyebrow, title, description, buttonText }) => {
   return (
     <div className="absolute inset-0 z-10 flex items-center">
-      <Container>
+      <Container className="pl-8 xl:pl-0">
         <div className="w-[70%] text-text-light sm:w-[42%]">
           <p className="mb-6 font-body text-small font-bold sm:mb-8">
             {eyebrow}

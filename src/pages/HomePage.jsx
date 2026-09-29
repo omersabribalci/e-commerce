@@ -8,7 +8,6 @@ import PageContent from "../layouts/PageContent";
 const HomePage = () => {
   return (
     <PageContent>
-      <h1 className="sr-only">Bandage online store</h1>
       <Slider />
       <EditorsPick />
       <BestSellers />

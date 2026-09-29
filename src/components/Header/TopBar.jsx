@@ -23,7 +23,7 @@ const TopBar = () => {
         <p className="font-bold text-h6">
           Follow Us and get a chance to win 80% off
         </p>
-        <nav className="flex gap-2" aria-label="Social media">
+        <nav className="flex gap-2">
           <span className="font-bold text-h6">Follow Us :</span>
           <ul className="flex flex-row items-center gap-4">
             {mediaIcons.map((item, index) => (

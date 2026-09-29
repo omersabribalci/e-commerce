@@ -32,9 +32,6 @@ const CartDropdown = ({ icon }) => {
       <button
         type="button"
         onClick={() => setIsOpen((current) => !current)}
-        aria-label={`Sepetim, ${itemCount} ürün`}
-        aria-expanded={isOpen}
-        aria-controls="cart-dropdown"
         className="relative flex items-center gap-1 cursor-pointer transition-colors hover:text-hover"
       >
         {icon}
@@ -47,7 +44,6 @@ const CartDropdown = ({ icon }) => {
 
       {isOpen && (
         <div
-          id="cart-dropdown"
           className="absolute left-1/2 top-full z-50 mt-3 w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-md border border-gray-light-2 bg-bg-light text-text shadow-accentued xl:right-0 xl:left-auto xl:translate-x-0 sm:w-96"
         >
           <div className="flex flex-row items-center justify-between px-5 py-4 border-b border-gray-light-2">

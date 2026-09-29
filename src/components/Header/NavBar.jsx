@@ -1,4 +1,4 @@
-import { CircleUser } from "lucide-react";
+import { CircleUser, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navIcons, navLink } from "../../data/Navigation/navbar";
 import Container from "../ui/Container";
@@ -13,7 +13,19 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const shopMenuRef = useRef(null);
   const user = useSelector((state) => state.client.user);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setIsCategoryOpen(false);
+  };
+
+  const handleCategoryHover = (isOpen) => {
+    if (window.matchMedia("(min-width: 1140px)").matches) {
+      setIsCategoryOpen(isOpen);
+    }
+  };
 
   useEffect(() => {
     if (categories.length === 0) {
@@ -51,49 +63,59 @@ const NavBar = () => {
     <div className="bg-bg-light">
       <Container
         as="nav"
-        aria-label="Primary navigation"
-        className="flex flex-col xl:flex-row gap-8 xl:gap-30 justify-between items-center py-4"
+        className="flex flex-col xl:flex-row gap-8 xl:gap-30 justify-between items-stretch xl:items-center py-4"
       >
-        <Link
-          to="/"
-          className="text-text font-display font-bold text-h3"
-          aria-label="Bandage home"
-        >
-          Bandage
-        </Link>
+        <div className="flex items-center justify-between xl:w-auto">
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="text-text font-display font-bold text-h3"
+          >
+            Bandage
+          </Link>
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((current) => !current)}
+            className="cursor-pointer text-text transition-colors hover:text-primary xl:hidden"
+          >
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
 
-        <div className="text-mobile-menu xl:text-link xl:flex-row flex flex-col gap-8 xl:gap-32 items-center text-text-secondary font-bold">
-          <ul className="flex flex-col xl:flex-row gap-3.5 items-center">
+        <div
+          className={`${isMenuOpen ? "flex" : "hidden"} w-full flex-col items-center gap-8 text-mobile-menu font-bold text-text-secondary xl:flex xl:w-auto xl:flex-row xl:gap-32 xl:text-link`}
+        >
+          <ul className="flex w-full flex-col items-center gap-3.5 xl:w-auto xl:flex-row">
             {navLink.map((item, index) => {
               const isShop = item.text === "Shop";
 
               return (
                 <li
                   key={index}
-                  className="relative"
+                  className="relative w-full text-center xl:w-auto"
                   ref={isShop ? shopMenuRef : null}
-                  onMouseEnter={() => isShop && setIsCategoryOpen(true)}
-                  onMouseLeave={() => isShop && setIsCategoryOpen(false)}
+                  onMouseEnter={() => isShop && handleCategoryHover(true)}
+                  onMouseLeave={() => isShop && handleCategoryHover(false)}
                 >
                   {isShop ? (
                     <>
                       <button
                         type="button"
                         onClick={() => setIsCategoryOpen((current) => !current)}
-                        className="cursor-pointer flex flex-row gap-1 items-center justify-center transition-colors hover:text-primary"
+                        className="mx-auto cursor-pointer flex flex-row gap-1 items-center justify-center transition-colors hover:text-primary"
                       >
                         {item.text} {item.icon}
                       </button>
                       {isCategoryOpen && (
-                        <div className="absolute bg-bg-light p-8 z-50 flex flex-col  gap-4 rounded-md shadow-accentued">
+                        <div className="relative mt-4 max-h-80 w-full overflow-y-auto rounded-md bg-bg-light p-4 shadow-accentued xl:absolute xl:mt-0 xl:max-h-none xl:w-auto xl:overflow-visible xl:p-8 z-50 flex flex-col gap-4">
                           <Link
                             to="/shop"
-                            onClick={() => setIsCategoryOpen(false)}
+                            onClick={closeMenu}
                             className="text-link font-bold text-text transition-colors hover:text-primary pl-4"
                           >
                             Tüm Kategoriler
                           </Link>
-                          <div className="flex flex-row gap-2 lg:gap-10 flex-wrap md:flex-nowrap">
+                          <div className="flex flex-row gap-2 lg:gap-10 flex-wrap md:flex-nowrap justify-center">
                             <div className="p-4">
                               <h4 className="text-text text-h4 font-bold mb-4">
                                 Kadın
@@ -105,7 +127,7 @@ const NavBar = () => {
                                     className="transition-all hover:text-primary hover:scale-110"
                                   >
                                     <Link
-                                      onClick={() => setIsCategoryOpen(false)}
+                                      onClick={closeMenu}
                                       to={`/shop/${cat.gender === "k" ? "kadin" : "erkek"}/${cat.code.split(":")[1]}/${cat.id}`}
                                       className="text-link text-text-secondary font-semibold transition-all hover:text-primary"
                                     >
@@ -127,7 +149,7 @@ const NavBar = () => {
                                     key={cat.id}
                                   >
                                     <Link
-                                      onClick={() => setIsCategoryOpen(false)}
+                                      onClick={closeMenu}
                                       to={`/shop/${cat.gender === "k" ? "kadin" : "erkek"}/${cat.code.split(":")[1]}/${cat.id}`}
                                       className="text-link text-text-secondary font-semibold transition-all hover:text-primary"
                                     >
@@ -142,7 +164,11 @@ const NavBar = () => {
                       )}
                     </>
                   ) : (
-                    <Link to={item.link} className="hover:text-primary">
+                    <Link
+                      to={item.link}
+                      onClick={closeMenu}
+                      className="hover:text-primary"
+                    >
                       {item.text}
                     </Link>
                   )}
@@ -151,7 +177,7 @@ const NavBar = () => {
             })}
           </ul>
 
-          <ul className="relative flex items-center gap-8 flex-col xl:flex-row text-primary">
+          <ul className="relative flex flex-wrap items-center justify-center gap-5 text-primary xl:flex-nowrap xl:gap-8">
             <li>
               {user.email ? (
                 <div className="flex flex-row gap-2 items-center justify-center">
@@ -164,18 +190,27 @@ const NavBar = () => {
                   <p className="text-h6 text-text-secondary">{user.name}</p>
                 </div>
               ) : (
-                <Link to="/login" className="flex gap-2 items-center">
+                <Link
+                  to="/login"
+                  onClick={closeMenu}
+                  className="flex gap-2 items-center"
+                >
                   <CircleUser />
                   <span className="whitespace-nowrap">Login / Register</span>
                 </Link>
               )}
             </li>
             {navIcons.map((item, index) => (
-              <li key={index} className={item.link === "/cart" ? "xl:relative" : ""}>
+              <li
+                key={index}
+                className={item.link === "/cart" ? "xl:relative" : ""}
+              >
                 {item.link === "/cart" ? (
                   <CartDropdown icon={item.icon} />
                 ) : (
-                  <Link to={item.link}>{item.icon}</Link>
+                  <Link to={item.link} onClick={closeMenu}>
+                    {item.icon}
+                  </Link>
                 )}
               </li>
             ))}

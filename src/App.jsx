@@ -31,10 +31,12 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
         <Route
+          exact
           path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId"
           component={ProductDetailPage}
         />
         <Route
+          exact
           path="/shop/:gender/:categoryName/:categoryId"
           component={ShopPage}
         />

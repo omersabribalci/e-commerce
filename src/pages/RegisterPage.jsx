@@ -127,7 +127,6 @@ const RegisterPage = () => {
                 <LoaderCircle
                   size={18}
                   className="animate-spin"
-                  aria-hidden="true"
                 />
               )}
 
