@@ -34,68 +34,75 @@ const CartProduct = ({ cartProduct }) => {
     );
     dispatch(setCart(updatedCart));
   };
+
+  // TODO: Mağaza API'si hazır olduğunda store_id ile mağaza adını getir.
   return (
-    <div className="flex flex-col gap-5 rounded-md border border-gray-light-2 bg-bg-light p-4 shadow-light sm:p-6 lg:flex-row lg:items-center">
-      <div className="flex min-w-0 flex-1 flex-row items-center gap-4">
-        <input
-          onChange={handleSelect}
-          type="checkbox"
-          checked={cartProduct?.checked}
-          aria-label={`${cartProduct.product.name} ürününü seç`}
-          className="h-4 w-4 shrink-0 cursor-pointer accent-primary"
-        />
-        <img
-          src={cartProduct?.product.images?.[0]?.url}
-          alt={cartProduct.product.name}
-          className="h-24 w-20 shrink-0 rounded-md border border-gray-light-2 object-contain"
-        />
-        <div className="min-w-0">
-          <h2 className="text-h6 font-bold text-text">
-            {cartProduct?.product.name}
-          </h2>
-          <p className="mt-1 line-clamp-2 text-small text-text-secondary">
-            {cartProduct?.product.description}
-          </p>
-        </div>
+    <div className="rounded-md border border-gray-light-2 bg-bg-light shadow-light">
+      <div className="border-b border-gray-light-2 px-4 py-3 text-small text-text-secondary sm:px-6">
+        Satıcı: <span className="font-bold text-text">#{cartProduct.product.store_id}</span>
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-4 lg:justify-end">
-        <div className="flex items-center rounded-md border border-gray-light-2">
+      <div className="flex flex-col gap-5 p-4 sm:p-6 lg:flex-row lg:items-center">
+        <div className="flex min-w-0 flex-1 flex-row items-center gap-4">
+          <input
+            onChange={handleSelect}
+            type="checkbox"
+            checked={cartProduct?.checked}
+            aria-label={`${cartProduct.product.name} ürününü seç`}
+            className="h-4 w-4 shrink-0 cursor-pointer accent-primary"
+          />
+          <img
+            src={cartProduct?.product.images?.[0]?.url}
+            alt={cartProduct.product.name}
+            className="h-24 w-20 shrink-0 rounded-md border border-gray-light-2 object-contain"
+          />
+          <div className="min-w-0">
+            <h2 className="text-h6 font-bold text-text">
+              {cartProduct?.product.name}
+            </h2>
+            <p className="mt-1 line-clamp-2 text-small text-text-secondary">
+              {cartProduct?.product.description}
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-4 lg:justify-end">
+          <div className="flex items-center rounded-md border border-gray-light-2">
+            <button
+              type="button"
+              onClick={() => handleCount("remove")}
+              disabled={cartProduct.count === 1}
+              aria-label={`${cartProduct.product.name} adedini azalt`}
+              className="h-9 w-9 cursor-pointer text-primary hover:bg-gray-light-1 disabled:cursor-not-allowed disabled:text-muted"
+            >
+              −
+            </button>
+            <span className="min-w-7 text-center text-h6 font-bold text-text">
+              {cartProduct.count}
+            </span>
+            <button
+              type="button"
+              onClick={() => handleCount("add")}
+              disabled={cartProduct.count >= cartProduct.product.stock}
+              aria-label={`${cartProduct.product.name} adedini artır`}
+              className="h-9 w-9 cursor-pointer text-primary hover:bg-gray-light-1 disabled:cursor-not-allowed disabled:text-muted"
+            >
+              +
+            </button>
+          </div>
+          <strong className="whitespace-nowrap text-right text-h6 text-text">
+            {(cartProduct.product.price * cartProduct.count).toLocaleString(
+              "tr-TR",
+              { minimumFractionDigits: 2, maximumFractionDigits: 2 },
+            )} TL
+          </strong>
           <button
             type="button"
-            onClick={() => handleCount("remove")}
-            disabled={cartProduct.count === 1}
-            aria-label={`${cartProduct.product.name} adedini azalt`}
-            className="h-9 w-9 cursor-pointer text-primary hover:bg-gray-light-1 disabled:cursor-not-allowed disabled:text-muted"
+            onClick={handleDelete}
+            aria-label={`${cartProduct.product.name} ürününü sepetten sil`}
+            className="rounded-md p-2 text-text-secondary cursor-pointer transition-colors hover:bg-gray-light-1 hover:text-danger"
           >
-            −
-          </button>
-          <span className="min-w-7 text-center text-h6 font-bold text-text">
-            {cartProduct.count}
-          </span>
-          <button
-            type="button"
-            onClick={() => handleCount("add")}
-            disabled={cartProduct.count >= cartProduct.product.stock}
-            aria-label={`${cartProduct.product.name} adedini artır`}
-            className="h-9 w-9 cursor-pointer text-primary hover:bg-gray-light-1 disabled:cursor-not-allowed disabled:text-muted"
-          >
-            +
+            <Trash size={20} aria-hidden="true" />
           </button>
         </div>
-        <strong className="whitespace-nowrap text-right text-h6 text-text">
-          {(cartProduct.product.price * cartProduct.count).toLocaleString(
-            "tr-TR",
-            { minimumFractionDigits: 2, maximumFractionDigits: 2 },
-          )} TL
-        </strong>
-        <button
-          type="button"
-          onClick={handleDelete}
-          aria-label={`${cartProduct.product.name} ürününü sepetten sil`}
-          className="rounded-md p-2 text-text-secondary cursor-pointer transition-colors hover:bg-gray-light-1 hover:text-danger"
-        >
-          <Trash size={20} aria-hidden="true" />
-        </button>
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ const ShopPage = () => {
   const { filter, limit, offset } = useSelector((state) => state.product);
   const { categoryId } = useParams();
   const [sort, setSort] = useState("");
+  const [view, setView] = useState("grid");
   const dispatch = useDispatch();
   const previousCriteria = useRef(null);
 
@@ -34,8 +35,8 @@ const ShopPage = () => {
     <PageContent>
       <PageHeader />
       <Categories />
-      <ShopToolbar sort={sort} setSort={setSort} />
-      <Products />
+      <ShopToolbar sort={sort} setSort={setSort} view={view} setView={setView} />
+      <Products view={view} />
       <BrandSection />
     </PageContent>
   );

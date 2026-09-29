@@ -12,7 +12,7 @@ const options = [
   { value: "rating:desc", label: "Rating Desc ↓" },
 ];
 
-const ShopToolbar = ({ sort, setSort }) => {
+const ShopToolbar = ({ sort, setSort, view, setView }) => {
   const dispatch = useDispatch();
   const totalCount = useSelector((state) => state.product.total);
   const filter = useSelector((state) => state.product.filter);
@@ -40,10 +40,22 @@ const ShopToolbar = ({ sort, setSort }) => {
       </h6>
       <div className="flex flex-row gap-4 items-center">
         <h6 className="text-h6 text-text-secondary font-bold">Views:</h6>
-        <button className="border-gray-light-2 border text-text p-2 rounded-[5px] cursor-pointer">
+        <button
+          type="button"
+          onClick={() => setView("grid")}
+          aria-label="Ürünleri grid olarak göster"
+          aria-pressed={view === "grid"}
+          className={`border-gray-light-2 border p-2 rounded-[5px] cursor-pointer transition-colors ${view === "grid" ? "bg-primary text-text-light" : "text-text hover:bg-gray-light-1"}`}
+        >
           <RiLayoutGridFill className="h-4 w-4" />
         </button>
-        <button className="border-gray-light-2 border text-text p-2 rounded-[5px] cursor-pointer">
+        <button
+          type="button"
+          onClick={() => setView("list")}
+          aria-label="Ürünleri liste olarak göster"
+          aria-pressed={view === "list"}
+          className={`border-gray-light-2 border p-2 rounded-[5px] cursor-pointer transition-colors ${view === "list" ? "bg-primary text-text-light" : "text-text hover:bg-gray-light-1"}`}
+        >
           <ListChecks className="h-4 w-4" />
         </button>
       </div>

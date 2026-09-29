@@ -4,7 +4,7 @@ import Container from "../ui/Container";
 import { useSelector } from "react-redux";
 import Loading from "../ui/Loading";
 
-const Products = () => {
+const Products = ({ view }) => {
   const products = useSelector((state) => state.product.productList);
   const fetchState = useSelector((state) => state.product.fetchState);
 
@@ -13,7 +13,7 @@ const Products = () => {
       {fetchState === "FETCHING" ? (
         <Loading />
       ) : (
-        <ProductGrid products={products} />
+        <ProductGrid products={products} view={view} />
       )}
 
       <Pagination />
