@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const CartDropdown = ({ icon }) => {
   const cart = useSelector((state) => state.shoppingCart.cart);
@@ -49,9 +50,17 @@ const CartDropdown = ({ icon }) => {
           id="cart-dropdown"
           className="absolute left-1/2 top-full z-50 mt-3 w-80 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-md border border-gray-light-2 bg-bg-light text-text shadow-accentued xl:right-0 xl:left-auto xl:translate-x-0 sm:w-96"
         >
-          <h2 className="border-b border-gray-light-2 px-5 py-4 text-h6 font-bold">
-            Sepetim ({itemCount} Ürün)
-          </h2>
+          <div className="flex flex-row items-center justify-between px-5 py-4 border-b border-gray-light-2">
+            <h2 className="text-h6 font-bold text-text">
+              Sepetim ({itemCount} Ürün)
+            </h2>
+            <Link
+              to="/cart"
+              className="text-link text-text cursor-pointer hover:text-hover hover:scale-105 transition-transform"
+            >
+              Sepete Git
+            </Link>
+          </div>
 
           {cart.length === 0 ? (
             <p className="px-5 py-8 text-center text-paragraph font-normal text-text-secondary">

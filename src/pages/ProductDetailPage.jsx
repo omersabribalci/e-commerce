@@ -30,8 +30,14 @@ const ProductDetailPage = () => {
         </Container>
       </div>
 
-      {fetchState === "FETCHING" ? (
-        <Loading />
+      {fetchState === "FAILED" ? (
+        <Container className="py-12 text-center text-paragraph text-text-secondary">
+          Ürün yüklenemedi. Lütfen tekrar deneyin.
+        </Container>
+      ) : fetchState === "FETCHING" || !product || String(product.id) !== productId ? (
+        <Container className="py-12">
+          <Loading />
+        </Container>
       ) : (
         <ProductDetail product={product} />
       )}

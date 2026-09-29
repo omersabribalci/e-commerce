@@ -10,6 +10,7 @@ import { Bounce, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { verifyToken } from "./store/actions/clientActions";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const App = () => {
           path="/shop/:gender/:categoryName/:categoryId"
           component={ShopPage}
         />
-
+        <Route path="/cart" component={ShoppingCartPage} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/login" component={LoginPage} />

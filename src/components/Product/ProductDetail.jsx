@@ -9,15 +9,19 @@ const ProductDetail = ({ product }) => {
   const dispatch = useDispatch();
   const totalStars = 5;
   const history = useHistory();
+  const cartCount = cart.find((item) => item.product.id === product?.id)?.count ?? 0;
+  const atStockLimit = !product || cartCount >= product.stock;
 
   const handleClick = () => {
+    if (atStockLimit) return;
+
     const updatedCart = cart.some((item) => item.product.id === product.id)
       ? cart.map((item) =>
           item.product.id === product.id
             ? { ...item, count: item.count + 1 }
             : item,
         )
-      : [...cart, { count: 1, product }];
+      : [...cart, { count: 1, checked: true, product }];
 
     dispatch(setCart(updatedCart));
   };
@@ -91,8 +95,11 @@ const ProductDetail = ({ product }) => {
               <Heart strokeWidth={1} className="text-text" />
             </button>
             <button
+              type="button"
               onClick={handleClick}
-              className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105"
+              disabled={atStockLimit}
+              aria-label="Sepete ekle"
+              className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
             >
               <ShoppingCart strokeWidth={1} className="text-text" />
             </button>
