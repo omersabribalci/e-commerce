@@ -98,7 +98,7 @@ export const registerInputsWithStoreRole = [
       required: "Phone number is required",
       pattern: {
         value: /^(?:\+90|0090|0)?5\d{9}$/,
-        message: "Enter a valid Türkiye mobile phone number",
+        message: "Enter a valid Turkish mobile phone number",
       },
     },
   },

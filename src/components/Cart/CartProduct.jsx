@@ -39,7 +39,7 @@ const CartProduct = ({ cartProduct }) => {
   return (
     <div className="rounded-md border border-gray-light-2 bg-bg-light shadow-light">
       <div className="border-b border-gray-light-2 px-4 py-3 text-small text-text-secondary sm:px-6">
-        Satıcı: <span className="font-bold text-text">#{cartProduct.product.store_id}</span>
+        Seller: <span className="font-bold text-text">#{cartProduct.product.store_id}</span>
       </div>
       <div className="flex flex-col gap-5 p-4 sm:p-6 lg:flex-row lg:items-center">
         <div className="flex min-w-0 flex-1 flex-row items-center gap-4">

@@ -6,9 +6,8 @@ const AboutIntro = () => {
       <div className="flex flex-1 flex-col py-6 gap-6 lg:text-left text-center">
         <p className="text-paragraph text-danger">Problems trying</p>
         <h3 className="text-text text-h3 font-bold px-14 lg:px-0">
-          Met minim Mollie non desert <br className="hidden lg:block" /> Alamo
-          est sit cliquey dolor do <br className="hidden lg:block" />
-          met sent.
+          Simple ideas can make a <br className="hidden lg:block" /> meaningful
+          difference in the way <br className="hidden lg:block" /> we live.
         </h3>
       </div>
       <div className="flex-1 lg:py-18.5 px-[37.5px]">

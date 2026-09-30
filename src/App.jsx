@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { verifyToken } from "./store/actions/clientActions";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import CreateOrderPage from "./pages/CreateOrderPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,6 +43,9 @@ const App = () => {
           component={ShopPage}
         />
         <Route path="/cart" component={ShoppingCartPage} />
+        <ProtectedRoute path="/create-order">
+          <CreateOrderPage />
+        </ProtectedRoute>
         <Route path="/contact" component={ContactPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/login" component={LoginPage} />

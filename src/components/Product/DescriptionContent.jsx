@@ -9,15 +9,12 @@ const DescriptionContent = ({ product }) => {
           the quick fox jumps over{" "}
         </h3>
         <p className="text-paragraph text-text-secondary">
-          Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
-          RELIT official consequent door ENIM RELIT Mollie. Excitation venial
-          consequent sent nostrum met. <br />
-          <br /> Met minim Mollie non desert Alamo est sit cliquey dolor do met
-          sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
-          venial consequent sent nostrum met. <br />
-          <br /> Met minim Mollie non desert Alamo est sit cliquey dolor do met
-          sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
-          venial consequent sent nostrum met.
+          Explore this item from every angle and find the details that matter
+          most to you. Compare its features and choose what suits you best. <br />
+          <br /> Browse the collection to discover more styles and find the
+          right fit for your everyday needs. <br />
+          <br /> Take your time to review the available information before
+          making your choice.
         </p>
       </div>
       <div className="py-6.25 flex flex-col gap-7.5">
@@ -25,15 +22,12 @@ const DescriptionContent = ({ product }) => {
           the quick fox jumps over{" "}
         </h3>
         <p className="text-paragraph text-text-secondary">
-          Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
-          RELIT official consequent door ENIM RELIT Mollie. Excitation venial
-          consequent sent nostrum met. <br />
-          <br /> Met minim Mollie non desert Alamo est sit cliquey dolor do met
-          sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
-          venial consequent sent nostrum met. <br />
-          <br /> Met minim Mollie non desert Alamo est sit cliquey dolor do met
-          sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
-          venial consequent sent nostrum met.
+          Explore this item from every angle and find the details that matter
+          most to you. Compare its features and choose what suits you best. <br />
+          <br /> Browse the collection to discover more styles and find the
+          right fit for your everyday needs. <br />
+          <br /> Take your time to review the available information before
+          making your choice.
         </p>
       </div>
     </div>

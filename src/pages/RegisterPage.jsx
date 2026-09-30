@@ -57,7 +57,7 @@ const RegisterPage = () => {
       // eslint-disable-next-line no-unused-vars
       const { confirmPassword, ...rest } = formData;
       const res = await api.post("/signup", rest);
-      toast.success("Successfull!");
+      toast.success("Registration successful!");
       history.push("/login", {
         successMessage: res.message,
       });

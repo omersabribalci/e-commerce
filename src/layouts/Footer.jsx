@@ -48,7 +48,7 @@ const Footer = () => {
                 Subscribe
               </button>
             </div>
-            <p className="text-text-secondary mt-5">Lorem impsum dolor amit</p>
+            <p className="text-text-secondary mt-5">Get updates delivered to your inbox.</p>
           </div>
         </Container>
       </div>

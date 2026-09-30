@@ -5,7 +5,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className="flex flex-col flex-wrap md:flex-row transition-transform duration-300 hover:scale-105 justify-center cursor-pointer"
+      className="flex flex-col flex-wrap md:flex-row border border-gray-light-2 transition-transform duration-300 hover:scale-105 justify-center cursor-pointer"
       onClick={() => openProduct(product)}
     >
       <img

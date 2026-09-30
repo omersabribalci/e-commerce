@@ -5,7 +5,7 @@ import postCard3 from "../assets/post-cards/post-card-3.png";
 export const posts = [
   {
     image: postCard1,
-    title: `Loudest à la Madison #1 (L'integral)`,
+    title: "Loudest at Madison #1 (Complete Edition)",
     description: `We focus on ergonomics and meeting you where you work. It's only a keystroke away.`,
     date: new Date(),
     commentCount: 10,
@@ -13,7 +13,7 @@ export const posts = [
   },
   {
     image: postCard2,
-    title: `Loudest à la Madison #1 (L'integral)`,
+    title: "Loudest at Madison #1 (Complete Edition)",
     description: `We focus on ergonomics and meeting you where you work. It's only a keystroke away.`,
     date: new Date(),
     commentCount: 10,
@@ -21,7 +21,7 @@ export const posts = [
   },
   {
     image: postCard3,
-    title: `Loudest à la Madison #1 (L'integral)`,
+    title: "Loudest at Madison #1 (Complete Edition)",
     description: `We focus on ergonomics and meeting you where you work. It's only a keystroke away.`,
     date: new Date(),
     commentCount: 10,

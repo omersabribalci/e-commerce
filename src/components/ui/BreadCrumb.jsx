@@ -17,9 +17,7 @@ const BreadCrumb = () => {
           const formattedValue = value.charAt(0).toUpperCase() + value.slice(1);
           return (
             <li key={to} className="flex items-center">
-              <ChevronRight
-                className="text-muted font-bold text-h6"
-              />
+              <ChevronRight className="text-muted font-bold text-h6" />
               {isLast ? (
                 <span className="text-muted font-bold text-h6">
                   {formattedValue}

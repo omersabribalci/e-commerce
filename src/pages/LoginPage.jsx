@@ -1,4 +1,4 @@
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import bg from "../assets/login/login-bg.png";
 import { loginInputs } from "../data/Login/login.js";
 import FormInput from "../components/ui/FormInput";
@@ -11,8 +11,10 @@ import { toast } from "react-toastify";
 
 export const LoginPage = () => {
   const [error, setError] = useState(null);
+  const location = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { from } = location.state || { from: { pathname: "/" } };
   const {
     register,
     handleSubmit,
@@ -26,7 +28,7 @@ export const LoginPage = () => {
     try {
       await dispatch(login(formData));
       toast.success("Welcome!");
-      history.push("/");
+      history.replace(from);
     } catch (err) {
       toast.error("Login failed!");
       setError(err.response?.data?.message || "Invalid credentials.");
@@ -74,10 +76,7 @@ export const LoginPage = () => {
               className="bg-[#6938EF] rounded-[40px] p-4 text-h5 text-white cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-[#531bf0] flex items-center justify-center gap-2"
             >
               {isSubmitting && (
-                <LoaderCircle
-                  size={18}
-                  className="animate-spin"
-                />
+                <LoaderCircle size={18} className="animate-spin" />
               )}
 
               {isSubmitting ? "Logging in..." : "Login"}

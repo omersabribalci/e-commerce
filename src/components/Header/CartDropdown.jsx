@@ -48,19 +48,19 @@ const CartDropdown = ({ icon }) => {
         >
           <div className="flex flex-row items-center justify-between px-5 py-4 border-b border-gray-light-2">
             <h2 className="text-h6 font-bold text-text">
-              Sepetim ({itemCount} Ürün)
+              My Cart ({itemCount} Items)
             </h2>
             <Link
               to="/cart"
               className="text-link text-text cursor-pointer hover:text-hover hover:scale-105 transition-transform"
             >
-              Sepete Git
+              View Cart
             </Link>
           </div>
 
           {cart.length === 0 ? (
             <p className="px-5 py-8 text-center text-paragraph font-normal text-text-secondary">
-              Sepetiniz boş.
+              Your cart is empty.
             </p>
           ) : (
             <ul className="max-h-80 overflow-y-auto">
@@ -88,7 +88,7 @@ const CartDropdown = ({ icon }) => {
                         {product.name}
                       </p>
                       <p className="mt-1 text-small text-text-secondary">
-                        Adet: {count}
+                        Quantity: {count}
                       </p>
                       <p className="mt-2 text-paragraph font-bold text-primary">
                         {price} TL

@@ -113,12 +113,12 @@ const NavBar = () => {
                             onClick={closeMenu}
                             className="text-link font-bold text-text transition-colors hover:text-primary pl-4"
                           >
-                            Tüm Kategoriler
+                            All Categories
                           </Link>
                           <div className="flex flex-row gap-2 lg:gap-10 flex-wrap md:flex-nowrap justify-center">
                             <div className="p-4">
                               <h4 className="text-text text-h4 font-bold mb-4">
-                                Kadın
+                                Women
                               </h4>
                               <ul className="flex flex-col lg:gap-4">
                                 {womanCategories.map((cat) => (
@@ -140,7 +140,7 @@ const NavBar = () => {
                             <div className="border text-black/10"></div>
                             <div className="p-4">
                               <h4 className="text-text text-h4 font-bold mb-4">
-                                Erkek
+                                Men
                               </h4>
                               <ul className="flex flex-col lg:gap-4">
                                 {manCategories.map((cat) => (
