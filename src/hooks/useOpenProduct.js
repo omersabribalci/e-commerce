@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { slugify } from "../../utils/slugify";
+import { slugify } from "../utils/slugify";
 
 const useOpenProduct = () => {
   const history = useHistory();

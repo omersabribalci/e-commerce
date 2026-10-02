@@ -8,18 +8,24 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import { Bounce, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { verifyToken } from "./store/actions/clientActions";
-import ShoppingCartPage from "./pages/ShoppingCartPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import CreateOrderPage from "./pages/CreateOrderPage";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 
 const App = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
+  const [checkingAuth, setCheckingAuth] = useState(() =>
+    Boolean(localStorage.getItem("token")),
+  );
+
   useEffect(() => {
-    dispatch(verifyToken());
+    dispatch(verifyToken()).finally(() => {
+      setCheckingAuth(false);
+    });
   }, [dispatch]);
 
   // Sayfa değiştiğinde önceki sayfanın kaydırma konumunu taşımayalım.
@@ -43,7 +49,7 @@ const App = () => {
           component={ShopPage}
         />
         <Route path="/cart" component={ShoppingCartPage} />
-        <ProtectedRoute path="/create-order">
+        <ProtectedRoute path="/create-order" checkingAuth={checkingAuth}>
           <CreateOrderPage />
         </ProtectedRoute>
         <Route path="/contact" component={ContactPage} />

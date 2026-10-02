@@ -1,6 +1,7 @@
 import api from "../../services/axiosInstance";
 
 export const SET_USER = "SET_USER";
+export const SET_ADDRESS_LIST = "SET_ADDRESS_LIST";
 export const SET_ROLES = "SET_ROLES";
 export const SET_THEME = "SET_THEME";
 export const SET_LANGUAGE = "SET_LANGUAGE";
@@ -9,6 +10,13 @@ export const setUser = (user) => {
   return {
     type: SET_USER,
     payload: user,
+  };
+};
+
+export const setAddressList = (addressList) => {
+  return {
+    type: SET_ADDRESS_LIST,
+    payload: addressList,
   };
 };
 
@@ -76,5 +84,33 @@ export const verifyToken = () => {
       delete api.defaults.headers.common.Authorization;
       console.error(error);
     }
+  };
+};
+
+export const getAddressList = () => {
+  return async (dispatch) => {
+    const response = await api.get("/user/address");
+    dispatch(setAddressList(response.data));
+  };
+};
+
+export const addNewAddress = (formData) => {
+  return async (dispatch) => {
+    await api.post("/user/address", formData);
+    await dispatch(getAddressList());
+  };
+};
+
+export const updateAddress = (formData) => {
+  return async (dispatch) => {
+    await api.put("/user/address", formData);
+    await dispatch(getAddressList());
+  };
+};
+
+export const deleteAddress = (id) => {
+  return async (dispatch) => {
+    await api.delete(`/user/address/${id}`);
+    await dispatch(getAddressList());
   };
 };

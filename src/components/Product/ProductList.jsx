@@ -1,4 +1,4 @@
-import useOpenProduct from "./useOpenProduct";
+import useOpenProduct from "../../hooks/useOpenProduct";
 
 const ProductList = ({ products }) => {
   const openProduct = useOpenProduct();

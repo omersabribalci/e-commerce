@@ -1,5 +1,6 @@
 import {
   SET_LANGUAGE,
+  SET_ADDRESS_LIST,
   SET_ROLES,
   SET_THEME,
   SET_USER,
@@ -20,6 +21,11 @@ export const clientReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case SET_ADDRESS_LIST:
+      return {
+        ...state,
+        addressList: action.payload,
       };
     case SET_ROLES:
       return {

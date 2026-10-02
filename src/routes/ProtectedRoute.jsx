@@ -1,14 +1,17 @@
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
+import Loading from "../components/ui/Loading";
 
-const ProtectedRoute = ({ children, ...rest }) => {
+const ProtectedRoute = ({ children, checkingAuth, ...rest }) => {
   const user = useSelector((state) => state.client.user);
-  const isAuthenticated = Boolean(user?.email);
+
   return (
     <Route
       {...rest}
-      render={({ location }) =>
-        isAuthenticated ? (
+      render={({ location }) => {
+        if (checkingAuth) return <Loading />;
+
+        return user?.email ? (
           children
         ) : (
           <Redirect
@@ -17,8 +20,8 @@ const ProtectedRoute = ({ children, ...rest }) => {
               state: { from: location },
             }}
           />
-        )
-      }
+        );
+      }}
     />
   );
 };

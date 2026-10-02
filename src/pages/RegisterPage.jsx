@@ -12,6 +12,7 @@ import { LoaderCircle } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRoles } from "../store/actions/clientActions";
 import { toast } from "react-toastify";
+import Loading from "../components/ui/Loading";
 
 // todo spinner and email activation message check !!
 
@@ -75,7 +76,7 @@ const RegisterPage = () => {
 
   // todo Loading ve error component yap
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading />;
 
   return (
     <div className="min-h-screen md:grid md:grid-cols-2">
@@ -124,10 +125,7 @@ const RegisterPage = () => {
               className="bg-[#6938EF] rounded-[40px] p-4 text-h5 text-white cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-[#531bf0] flex items-center justify-center gap-2"
             >
               {isSubmitting && (
-                <LoaderCircle
-                  size={18}
-                  className="animate-spin"
-                />
+                <LoaderCircle size={18} className="animate-spin" />
               )}
 
               {isSubmitting ? "Creating account..." : "Create an account"}

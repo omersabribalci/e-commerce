@@ -1,35 +1,57 @@
 import { ChevronRight } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+
+const formatSlug = (slug) =>
+  slug.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 
 const BreadCrumb = () => {
-  const location = useLocation();
+  const { gender, categoryName, categoryId, productNameSlug, productId } =
+    useParams();
+  const { categories, product } = useSelector((state) => state.product);
+  const category = categories.find((item) => String(item.id) === categoryId);
+  const categoryLabel = category?.title ?? formatSlug(categoryName ?? "");
+  const genderLabel = gender === "kadin" ? "Women's" : "Men's";
+  const categoryPath = `/shop/${gender}/${categoryName}/${categoryId}`;
 
-  const pathnames = location.pathname.split("/").filter((x) => x);
+  const items = [
+    { label: "Home", to: "/" },
+    { label: "Shop", to: categoryId ? "/shop" : undefined },
+  ];
+
+  if (categoryId) {
+    items.push({
+      label: `${genderLabel} ${categoryLabel}`,
+      to: productId ? categoryPath : undefined,
+    });
+  }
+
+  if (productId) {
+    items.push({
+      label:
+        String(product?.id) === productId
+          ? product.name
+          : formatSlug(productNameSlug),
+    });
+  }
+
   return (
     <nav>
       <ol className="flex flex-row items-center">
-        <li className="text-link text-text font-bold">
-          <Link to="/">Home</Link>
-        </li>
-        {pathnames.map((value, index) => {
-          const to = `/${pathnames.slice(0, index + 1).join("/")}`;
-          const isLast = index === pathnames.length - 1;
-          const formattedValue = value.charAt(0).toUpperCase() + value.slice(1);
-          return (
-            <li key={to} className="flex items-center">
+        {items.map(({ label, to }, index) => (
+          <li key={index} className="flex items-center">
+            {index > 0 && (
               <ChevronRight className="text-muted font-bold text-h6" />
-              {isLast ? (
-                <span className="text-muted font-bold text-h6">
-                  {formattedValue}
-                </span>
-              ) : (
-                <Link to={to} className="text-link text-text font-bold">
-                  {formattedValue}
-                </Link>
-              )}
-            </li>
-          );
-        })}
+            )}
+            {to ? (
+              <Link to={to} className="text-link text-text font-bold">
+                {label}
+              </Link>
+            ) : (
+              <span className="text-muted font-bold text-h6">{label}</span>
+            )}
+          </li>
+        ))}
       </ol>
     </nav>
   );
