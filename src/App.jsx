@@ -49,7 +49,11 @@ const App = () => {
           component={ShopPage}
         />
         <Route path="/cart" component={ShoppingCartPage} />
-        <ProtectedRoute path="/create-order" checkingAuth={checkingAuth}>
+        <ProtectedRoute
+          path="/create-order"
+          checkingAuth={checkingAuth}
+          requireSelectedCart
+        >
           <CreateOrderPage />
         </ProtectedRoute>
         <Route path="/contact" component={ContactPage} />

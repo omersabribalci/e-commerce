@@ -4,9 +4,15 @@ import Container from "../components/ui/Container";
 import PageContent from "../layouts/PageContent";
 import AddressInfo from "../components/Order/AddressInfo";
 import PaymentOptions from "../components/Order/PaymentOptions";
+import { useSelector } from "react-redux";
+import { getSelectedProductsTotal } from "../utils/cartTotal";
 
 const CreateOrderPage = () => {
   const [activeTab, setActiveTab] = useState("address");
+  const selectedTotal = useSelector((state) =>
+    getSelectedProductsTotal(state.shoppingCart.cart),
+  );
+  const canPay = selectedTotal > 0;
 
   const tabs = [
     { id: "address", label: "Address Information" },
@@ -38,7 +44,15 @@ const CreateOrderPage = () => {
           <div className="flex-1/4">
             <OrderSummary
               action={
-                <button className="mt-6 block w-full rounded-md bg-primary px-4 py-3 text-center text-btn font-bold text-text-light hover:bg-hover transition-colors duration-300">
+                <button
+                  type="button"
+                  disabled={!canPay}
+                  className={`mt-6 block w-full rounded-md px-4 py-3 text-center text-btn font-bold transition-colors duration-300 ${
+                    canPay
+                      ? "bg-primary text-text-light hover:bg-hover"
+                      : "cursor-not-allowed bg-gray-300 text-text-secondary"
+                  }`}
+                >
                   Make a Payment
                 </button>
               }

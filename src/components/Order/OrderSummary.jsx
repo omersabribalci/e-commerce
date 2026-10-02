@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { getSelectedProductsTotal } from "../../utils/cartTotal";
 
 const SHIPPING_FEE = 29.99;
 const DISCOUNT = 0;
@@ -12,11 +13,7 @@ const OrderSummary = ({ action }) => {
     (total, item) => total + (item.checked ? item.count : 0),
     0,
   );
-  const productsTotal = cart.reduce(
-    (total, item) =>
-      item.checked ? total + item.product.price * item.count : total,
-    0,
-  );
+  const productsTotal = getSelectedProductsTotal(cart);
   // TODO: Replace the flat shipping fee when the backend provides shipping costs.
   const shippingFee = selectedCount > 0 ? SHIPPING_FEE : 0;
   const grandTotal = productsTotal + shippingFee - DISCOUNT;
