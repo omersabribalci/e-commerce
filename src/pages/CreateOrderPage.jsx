@@ -12,7 +12,12 @@ const CreateOrderPage = () => {
   const selectedTotal = useSelector((state) =>
     getSelectedProductsTotal(state.shoppingCart.cart),
   );
-  const canPay = selectedTotal > 0;
+  const hasSelectedCard = useSelector((state) =>
+    state.client.creditCards.some(
+      (card) => card.id === state.shoppingCart.payment.cardId,
+    ),
+  );
+  const canPay = selectedTotal > 0 && hasSelectedCard;
 
   const tabs = [
     { id: "address", label: "Address Information" },

@@ -1,6 +1,7 @@
 import {
   SET_LANGUAGE,
   SET_ADDRESS_LIST,
+  SET_CREDIT_CARDS,
   SET_ROLES,
   SET_THEME,
   SET_USER,
@@ -9,7 +10,7 @@ import {
 const initialState = {
   user: {},
   addressList: [], // todo ileride kullanılacak
-  creditCards: [], // todo ileride kullanılacak
+  creditCards: [],
   roles: [],
   theme: "",
   language: "",
@@ -26,6 +27,11 @@ export const clientReducer = (state = initialState, action) => {
       return {
         ...state,
         addressList: action.payload,
+      };
+    case SET_CREDIT_CARDS:
+      return {
+        ...state,
+        creditCards: action.payload,
       };
     case SET_ROLES:
       return {
