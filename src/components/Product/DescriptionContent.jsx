@@ -1,6 +1,7 @@
 import productImg from ".././../assets/products/product-detail-2.png";
 
-const DescriptionContent = ({ product }) => {
+const DescriptionContent = () => {
+  // TODO: Replace this placeholder with product-specific content when the API provides it.
   return (
     <div className="py-6 flex flex-col lg:flex-row gap-7.5">
       <img src={productImg} alt="" className="object-contain" />

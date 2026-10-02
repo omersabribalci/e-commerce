@@ -10,7 +10,11 @@ const BestSellers = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (products.length === 0) dispatch(ensureProductList());
+    if (products.length === 0) {
+      const controller = new AbortController();
+      dispatch(ensureProductList(controller.signal));
+      return () => controller.abort();
+    }
   }, [dispatch, products.length]);
 
   const bestSellers = [...products]

@@ -5,7 +5,7 @@ import AdditionalInfoContent from "./AdditionalInfoContent";
 import ReviewsContent from "./ReviewsContent";
 import Container from "../ui/Container";
 
-const ProductInfoTabs = ({ product }) => {
+const ProductInfoTabs = () => {
   const [activeTab, setActiveTab] = useState("description");
 
   const tabs = [
@@ -23,7 +23,7 @@ const ProductInfoTabs = ({ product }) => {
       <hr className="text-muted hidden lg:block h-0.5" />
       <div className="tab-content">
         {activeTab === "description" && (
-          <DescriptionContent product={product} />
+          <DescriptionContent />
         )}
         {activeTab === "info" && <AdditionalInfoContent />}
         {activeTab === "reviews" && <ReviewsContent />}

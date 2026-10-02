@@ -13,13 +13,17 @@ const Products = ({ view }) => {
     <Container className="py-20 lg:py-12 flex flex-col items-center">
       {fetchState === "FETCHING" ? (
         <Loading />
+      ) : fetchState === "FAILED" ? (
+        <p className="text-text-secondary">
+          Products could not be loaded. Please try again.
+        </p>
       ) : view === "list" ? (
         <ProductList products={products} />
       ) : (
         <ProductGrid products={products} />
       )}
 
-      <Pagination />
+      {fetchState === "FETCHED" && <Pagination />}
     </Container>
   );
 };

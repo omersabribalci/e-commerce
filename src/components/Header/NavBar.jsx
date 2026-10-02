@@ -179,6 +179,7 @@ const NavBar = () => {
 
           <ul className="relative flex flex-wrap items-center justify-center gap-5 text-primary xl:flex-nowrap xl:gap-8">
             <li>
+              {/* TODO: Add logout here; clear the stored token, Axios Authorization header, and user-specific Redux state. */}
               {user.email ? (
                 <div className="flex flex-row gap-2 items-center justify-center">
                   <Gravatar

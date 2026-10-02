@@ -28,7 +28,12 @@ const ShopPage = () => {
       return;
     }
 
-    dispatch(getProducts(categoryId, sort, filter, limit, offset));
+    const controller = new AbortController();
+    dispatch(
+      getProducts(categoryId, sort, filter, limit, offset, controller.signal),
+    );
+
+    return () => controller.abort();
   }, [dispatch, categoryId, sort, filter, limit, offset]);
 
   return (

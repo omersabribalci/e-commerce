@@ -13,12 +13,15 @@ import Loading from "../components/ui/Loading";
 
 const ProductDetailPage = () => {
   const product = useSelector((state) => state.product.product);
-  const fetchState = useSelector((state) => state.product.fetchState);
+  const fetchState = useSelector((state) => state.product.productFetchState);
   const { productId } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProductById(productId));
+    const controller = new AbortController();
+    dispatch(getProductById(productId, controller.signal));
+
+    return () => controller.abort();
   }, [dispatch, productId]);
 
   return (

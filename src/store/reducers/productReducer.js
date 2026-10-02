@@ -4,6 +4,7 @@ import {
   SET_PRODUCT,
   SET_TOTAL,
   SET_FETCH_STATE,
+  SET_PRODUCT_FETCH_STATE,
   SET_LIMIT,
   SET_OFFSET,
   SET_FILTER,
@@ -18,6 +19,7 @@ const initialState = {
   offset: 0,
   filter: "",
   fetchState: "NOT_FETCHED",
+  productFetchState: "NOT_FETCHED",
 };
 
 // limit: {Number} | 25 by default product count on the pageoffset: {Number} | 0 by default for pagination fetch state: {String} | "NOT_FETCHED" by default | one of "NOT_FETCHED" , "FETCHING", "FETCHED", "FAILED"
@@ -48,6 +50,11 @@ export const productReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchState: action.payload,
+      };
+    case SET_PRODUCT_FETCH_STATE:
+      return {
+        ...state,
+        productFetchState: action.payload,
       };
     case SET_LIMIT:
       return {

@@ -5,6 +5,7 @@ export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
 export const SET_PRODUCT = "SET_PRODUCT";
 export const SET_TOTAL = "SET_TOTAL";
 export const SET_FETCH_STATE = "SET_FETCH_STATE";
+export const SET_PRODUCT_FETCH_STATE = "SET_PRODUCT_FETCH_STATE";
 export const SET_LIMIT = "SET_LIMIT";
 export const SET_OFFSET = "SET_OFFSET";
 export const SET_FILTER = "SET_FILTER";
@@ -40,6 +41,13 @@ export const setTotal = (total) => {
 export const setFetchState = (fetchState) => {
   return {
     type: SET_FETCH_STATE,
+    payload: fetchState,
+  };
+};
+
+export const setProductFetchState = (fetchState) => {
+  return {
+    type: SET_PRODUCT_FETCH_STATE,
     payload: fetchState,
   };
 };
@@ -82,6 +90,7 @@ export const getProducts = (
   filter = "",
   limit,
   offset,
+  signal,
 ) => {
   return async (dispatch) => {
     try {
@@ -109,41 +118,50 @@ export const getProducts = (
         params.offset = offset;
       }
 
-      const response = await api.get("/products", { params });
+      const response = await api.get("/products", { params, signal });
+
+      if (signal?.aborted) return;
 
       dispatch(setProductList(response.data.products));
       dispatch(setTotal(response.data.total));
       dispatch(setFetchState("FETCHED"));
     } catch (error) {
+      if (signal?.aborted) return;
+      dispatch(setProductList([]));
+      dispatch(setTotal(0));
       dispatch(setFetchState("FAILED"));
       console.error(error);
     }
   };
 };
 
-export const ensureProductList = () => {
+export const ensureProductList = (signal) => {
   return async (dispatch, getState) => {
     if (getState().product.productList.length > 0) return;
 
     try {
-      const response = await api.get("/products");
+      const response = await api.get("/products", { signal });
+      if (signal?.aborted) return;
       dispatch(setProductList(response.data.products));
     } catch (error) {
+      if (signal?.aborted) return;
       console.error(error);
     }
   };
 };
 
-export const getProductById = (id) => {
+export const getProductById = (id, signal) => {
   return async (dispatch) => {
     try {
-      dispatch(setFetchState("FETCHING"));
+      dispatch(setProductFetchState("FETCHING"));
       dispatch(setProduct(null));
-      const response = await api.get(`/products/${id}`);
+      const response = await api.get(`/products/${id}`, { signal });
+      if (signal?.aborted) return;
       dispatch(setProduct(response.data));
-      dispatch(setFetchState("FETCHED"));
+      dispatch(setProductFetchState("FETCHED"));
     } catch (error) {
-      dispatch(setFetchState("FAILED"));
+      if (signal?.aborted) return;
+      dispatch(setProductFetchState("FAILED"));
       console.error(error);
     }
   };
