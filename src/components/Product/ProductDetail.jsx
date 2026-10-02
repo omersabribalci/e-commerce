@@ -1,4 +1,4 @@
-import { ArrowLeft, Eye, Heart, ShoppingCart, Star } from "lucide-react";
+import { ArrowLeft, ShoppingCart, Star } from "lucide-react";
 import { useHistory } from "react-router-dom";
 import Container from "../ui/Container";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,36 +32,40 @@ const ProductDetail = ({ product }) => {
         <button
           type="button"
           onClick={() => history.goBack()}
-          className="inline-flex items-center gap-2 rounded-md border border-gray-light-2 px-4 py-2 text-link font-bold text-primary cursor-pointer transition-colors hover:bg-bg-light"
+          className="inline-flex items-center gap-1.5 py-1 text-sm font-semibold text-primary cursor-pointer hover:underline"
         >
-          <ArrowLeft size={18} />
+          <ArrowLeft size={16} />
           Back
         </button>
       </Container>
-      <Container className="flex flex-col lg:flex-row gap-7.5 py-12 lg:pb-12 lg:pt-0">
+      <Container className="flex flex-col lg:flex-row gap-7.5 py-6 lg:pb-12 lg:pt-2">
         <img
           src={product?.images?.[0]?.url}
           alt={product?.name ?? ""}
-          className="h-80 w-full object-contain lg:h-112.5 lg:max-w-125"
+          className="block h-auto w-full self-start rounded-md lg:w-[45%] lg:max-w-125 lg:shrink-0"
         />
         <div className="px-6 py-2.75 gap-5.5 lg:px-5.5 lg:gap-6.75 flex flex-col">
           <h1 className="text-text text-h4">{product?.name}</h1>
-          <div className="flex flex-row">
+          <div className="flex flex-row items-center">
             {Array.from({ length: totalStars }).map((_, index) => (
               <Star
                 key={index}
                 strokeWidth={0.3}
                 className={
-                  index < product?.rating ? "fill-[#F3CD03]" : "fill-bg-light"
+                  index < Math.round(Number(product?.rating) || 0)
+                    ? "fill-[#F3CD03]"
+                    : "fill-bg-light"
                 }
               />
             ))}
-            <span className="ml-2 text-h6 text-text-secondary font-bold">
-              10 reviews
-            </span>
+            {Number(product?.sell_count) > 0 && (
+              <span className="ml-3 whitespace-nowrap rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-small font-semibold text-primary">
+                {Number(product.sell_count).toLocaleString("en-US")} sold
+              </span>
+            )}
           </div>
           <span className="text-h3 text-text font-bold">
-            {product?.price} TL
+            ₺{product?.price}
           </span>
           <div className="flex flex-row gap-2">
             <span className="text-h6 text-text-secondary font-bold">
@@ -84,27 +88,27 @@ const ProductDetail = ({ product }) => {
             ))}
           </div> */}
           <div className="flex flex-row flex-wrap gap-2.5">
-            <select
-              name=""
-              id=""
-              className="bg-primary rounded-[5px] px-5 py-2.5"
-            >
+            {/* TODO: Show this when the backend provides size/color variants.
+            <select name="" id="" className="bg-primary rounded-[5px] px-5 py-2.5">
               <option value="" label="Select Options"></option>
-            </select>
+            </select> */}
+            {/* TODO: Restore when favorites are supported by the backend.
             <button className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105">
               <Heart strokeWidth={1} className="text-text" />
-            </button>
+            </button> */}
             <button
               type="button"
               onClick={handleClick}
               disabled={atStockLimit}
-              className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+              className="inline-flex items-center gap-2 rounded-md border border-muted px-4 py-2 text-btn font-semibold text-text cursor-pointer transition-colors hover:bg-bg-light disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ShoppingCart strokeWidth={1} className="text-text" />
+              Add to Cart
             </button>
+            {/* TODO: Add an image zoom/gallery here if product media needs it later.
             <button className="border rounded-full p-2 border-muted cursor-pointer transition-transform hover:scale-105">
               <Eye strokeWidth={1} className="text-text" />
-            </button>
+            </button> */}
           </div>
         </div>
       </Container>

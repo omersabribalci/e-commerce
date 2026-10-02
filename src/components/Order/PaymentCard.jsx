@@ -23,7 +23,7 @@ const PaymentCard = ({
           name="saved-card"
           checked={selected}
           onChange={onSelect}
-          className="size-4 shrink-0 accent-primary"
+          className="size-4 shrink-0 cursor-pointer appearance-none rounded-full border-2 border-muted bg-white checked:border-primary checked:bg-primary checked:shadow-[inset_0_0_0_3px_white]"
         />
         <span className="min-w-0 text-paragraph text-text">
           <span className="block font-semibold">{card.name_on_card}</span>

@@ -4,6 +4,7 @@ import ShopPage from "./pages/ShopPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
+import TeamPage from "./pages/TeamPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import { Bounce, ToastContainer } from "react-toastify";
@@ -13,6 +14,7 @@ import { verifyToken } from "./store/actions/clientActions";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import CreateOrderPage from "./pages/CreateOrderPage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
+import ComingSoonPage from "./pages/ComingSoonPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +40,12 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/shop/kids">
+          <ComingSoonPage collection="Kids" />
+        </Route>
+        <Route exact path="/shop/accessories">
+          <ComingSoonPage collection="Accessories" />
+        </Route>
         <Route
           exact
           path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId"
@@ -57,6 +65,7 @@ const App = () => {
           <CreateOrderPage />
         </ProtectedRoute>
         <Route path="/contact" component={ContactPage} />
+        <Route path="/team" component={TeamPage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={RegisterPage} />

@@ -5,7 +5,7 @@ const SHIPPING_FEE = 29.99;
 const DISCOUNT = 0;
 
 const formatPrice = (value) =>
-  `${value.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} TL`;
+  `₺${value.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
 const OrderSummary = ({ action }) => {
   const cart = useSelector((state) => state.shoppingCart.cart);

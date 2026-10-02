@@ -12,7 +12,7 @@ import { getProducts, setOffset } from "../store/actions/productActions";
 const ShopPage = () => {
   const { filter, limit, offset } = useSelector((state) => state.product);
   const { categoryId } = useParams();
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState("rating:desc");
   const [view, setView] = useState("grid");
   const dispatch = useDispatch();
   const previousCriteria = useRef(null);

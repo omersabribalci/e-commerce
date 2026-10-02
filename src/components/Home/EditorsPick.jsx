@@ -3,12 +3,16 @@ import editorsPick2 from "../../assets/editors-pick/editors-pick-2.jpg";
 import editorsPick3 from "../../assets/editors-pick/editors-pick-3.png";
 import editorsPick4 from "../../assets/editors-pick/editors-pick-4.jpg";
 import Container from "../ui/Container";
+import { Link } from "react-router-dom";
 
-const Button = ({ text }) => {
+const Button = ({ text, to }) => {
   return (
-    <button className="bg-bg-light absolute bottom-6 left-6 h-12 min-w-20 text-text text-h5 font-bold cursor-pointer hover:bg-hover transition-colors duration-400">
+    <Link
+      to={to}
+      className="bg-bg-light absolute bottom-6 left-6 flex h-12 min-w-20 items-center justify-center px-3 text-text text-h5 font-bold cursor-pointer hover:bg-hover transition-colors duration-400"
+    >
       {text}
-    </button>
+    </Link>
   );
 };
 
@@ -29,7 +33,7 @@ const EditorsPick = () => {
               alt="MEN"
               className="w-full h-full object-cover"
             />
-            <Button text={"MEN"} />
+            <Button text="MEN" to="/shop" />
           </div>
           <div className="relative w-full h-125 sm:h-full sm:flex-1 min-w-0">
             <img
@@ -37,7 +41,7 @@ const EditorsPick = () => {
               alt="WOMEN"
               className="w-full h-full object-cover"
             />
-            <Button text={"WOMEN"} />
+            <Button text="WOMEN" to="/shop" />
           </div>
           <div className="flex flex-col gap-7.5 w-full sm:flex-1 sm:h-full min-w-0">
             <div className="relative w-full h-58.75 sm:flex-1 min-h-0">
@@ -46,7 +50,7 @@ const EditorsPick = () => {
                 alt="ACCESSORIES"
                 className="w-full h-full object-cover"
               />
-              <Button text={"ACCESSORIES"} />
+              <Button text="ACCESSORIES" to="/shop/accessories" />
             </div>
             <div className="relative w-full h-58.75 sm:flex-1 min-h-0">
               <img
@@ -54,7 +58,7 @@ const EditorsPick = () => {
                 alt="KIDS"
                 className="w-full h-full object-cover"
               />
-              <Button text={"KIDS"} />
+              <Button text="KIDS" to="/shop/kids" />
             </div>
           </div>
         </div>

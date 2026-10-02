@@ -1,6 +1,7 @@
 import { ListChecks, Search } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RiLayoutGridFill } from "react-icons/ri";
+import { useLocation } from "react-router-dom";
 import Container from "../ui/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../../store/actions/productActions";
@@ -14,6 +15,8 @@ const options = [
 
 const ShopToolbar = ({ sort, setSort, view, setView }) => {
   const dispatch = useDispatch();
+  const { hash } = useLocation();
+  const searchInputRef = useRef(null);
   const totalCount = useSelector((state) => state.product.total);
   const filter = useSelector((state) => state.product.filter);
   const [searchText, setSearchText] = useState(filter);
@@ -32,6 +35,13 @@ const ShopToolbar = ({ sort, setSort, view, setView }) => {
       clearTimeout(timeoutId);
     };
   }, [dispatch, searchText]);
+
+  useEffect(() => {
+    if (hash !== "#search") return;
+
+    const frameId = requestAnimationFrame(() => searchInputRef.current?.focus());
+    return () => cancelAnimationFrame(frameId);
+  }, [hash]);
 
   return (
     <Container className="gap-6 lg:gap-0 py-6 flex flex-col lg:flex-row justify-between text-center items-center">
@@ -58,6 +68,7 @@ const ShopToolbar = ({ sort, setSort, view, setView }) => {
       <div className="relative w-full sm:w-64 lg:w-52">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-secondary" />
         <input
+          ref={searchInputRef}
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           id="search"

@@ -1,7 +1,6 @@
 import ProductDetail from "../components/Product/ProductDetail";
 import BrandSection from "../components/Shop/BrandSection";
-import ProductGrid from "../components/Product/ProductGrid";
-import { products } from "../data/products";
+import BestSellers from "../components/Home/BestSellers";
 import PageContent from "../layouts/PageContent";
 import ProductInfoTabs from "../components/Product/ProductInfoTabs";
 import BreadCrumb from "../components/ui/BreadCrumb";
@@ -36,20 +35,14 @@ const ProductDetailPage = () => {
         </Container>
       ) : fetchState === "FETCHING" || !product || String(product.id) !== productId ? (
         <Container className="py-12">
-          <Loading />
+          <Loading className="h-80 w-full" />
         </Container>
       ) : (
         <ProductDetail product={product} />
       )}
 
       <ProductInfoTabs />
-      <section>
-        <Container className="py-12 flex flex-col gap-6">
-          <h2 className="text-h3 text-text font-bold">BESTSELLER PRODUCTS</h2>
-          <hr className="text-gray-light-2 lg:h-0.5" />
-          <ProductGrid products={products} />
-        </Container>
-      </section>
+      <BestSellers />
       <BrandSection />
     </PageContent>
   );

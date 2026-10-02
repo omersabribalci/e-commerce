@@ -1,8 +1,8 @@
 import { LoaderCircle } from "lucide-react";
 
-const Loading = () => {
+const Loading = ({ className = "w-dvw h-dvh" }) => {
   return (
-    <div className="flex items-center justify-center text-center w-dvw h-dvh">
+    <div className={`flex items-center justify-center text-center ${className}`}>
       <LoaderCircle className="animate-spin text-primary mx-auto" size={40} />
     </div>
   );

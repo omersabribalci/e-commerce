@@ -1,8 +1,11 @@
 import hero from "../../assets/promo-section/promo-section-hero.png";
 import ButtonMd from "../ui/ButtonMd";
 import Container from "../ui/Container";
+import { useHistory } from "react-router-dom";
 
 const PromoSection = () => {
+  const history = useHistory();
+
   return (
     <section className="bg-bg-light">
       <Container className="flex flex-col-reverse lg:flex-row">
@@ -22,7 +25,9 @@ const PromoSection = () => {
             We know how large objects will act, but things on a small scale.
           </h4>
           <div className="flex flex-col gap-6.25 lg:flex lg:flex-row lg:gap-2.5">
-            <ButtonMd color="success">{"BUY NOW"}</ButtonMd>
+            <ButtonMd color="success" onClick={() => history.push("/shop")}>
+              BUY NOW
+            </ButtonMd>
             <ButtonMd variant="outlined" color="success">
               {"LEARN MORE"}
             </ButtonMd>

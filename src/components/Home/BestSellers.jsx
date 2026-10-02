@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductGrid from "../Product/ProductGrid";
 import Container from "../ui/Container";
 import { useEffect } from "react";
-import { getProducts } from "../../store/actions/productActions";
+import { ensureProductList } from "../../store/actions/productActions";
 
 const BestSellers = () => {
   const products = useSelector((state) => state.product.productList);
@@ -10,11 +10,11 @@ const BestSellers = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts());
+    if (products.length === 0) dispatch(ensureProductList());
   }, [dispatch, products.length]);
 
-  const bestSellersProducts = [...products]
-    .sort((a, b) => b.sellCount - a.sellCount)
+  const bestSellers = [...products]
+    .sort((a, b) => Number(b.sell_count ?? 0) - Number(a.sell_count ?? 0))
     .slice(0, 8);
 
   return (
@@ -27,7 +27,7 @@ const BestSellers = () => {
             Problems trying to resolve the conflict between
           </p>
         </div>
-        <ProductGrid products={bestSellersProducts} />
+        <ProductGrid products={bestSellers} />
       </Container>
     </section>
   );

@@ -10,8 +10,11 @@ import heroImage2 from "../../assets/hero/hero-slider-2.webp";
 import heroImage3 from "../../assets/hero/hero-slider-3.webp";
 import ButtonMd from "./ButtonMd";
 import Container from "./Container";
+import { useHistory } from "react-router-dom";
 
 const SlideContent = ({ eyebrow, title, description, buttonText }) => {
+  const history = useHistory();
+
   return (
     <div className="absolute inset-0 z-10 flex items-center">
       <Container className="pl-8 xl:pl-0">
@@ -25,7 +28,12 @@ const SlideContent = ({ eyebrow, title, description, buttonText }) => {
           <p className="mt-5 max-w-80 font-body text-paragraph font-medium sm:mt-7 sm:text-h5">
             {description}
           </p>
-          <ButtonMd className="mt-6" variant="solid" color="info">
+          <ButtonMd
+            className="mt-6"
+            variant="solid"
+            color="info"
+            onClick={() => history.push("/shop")}
+          >
             {buttonText}
           </ButtonMd>
         </div>

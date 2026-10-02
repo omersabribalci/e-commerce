@@ -11,7 +11,7 @@ const ProductInfoTabs = ({ product }) => {
   const tabs = [
     { id: "description", label: "Description" },
     { id: "info", label: "Additional Information" },
-    { id: "reviews", label: `Reviews (${product?.reviewsCount || 0})` },
+    { id: "reviews", label: "Reviews" },
   ];
   return (
     <Container>
@@ -25,8 +25,8 @@ const ProductInfoTabs = ({ product }) => {
         {activeTab === "description" && (
           <DescriptionContent product={product} />
         )}
-        {activeTab === "info" && <AdditionalInfoContent product={product} />}
-        {activeTab === "reviews" && <ReviewsContent product={product} />}
+        {activeTab === "info" && <AdditionalInfoContent />}
+        {activeTab === "reviews" && <ReviewsContent />}
       </div>
     </Container>
   );

@@ -1,10 +1,14 @@
 import { Trash } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { setCart } from "../../store/actions/shoppingCartActions";
+import { getProductDetailPath } from "../../utils/productDetailPath";
 
 const CartProduct = ({ cartProduct }) => {
   const cart = useSelector((state) => state.shoppingCart.cart);
+  const categories = useSelector((state) => state.product.categories);
   const dispatch = useDispatch();
+  const detailPath = getProductDetailPath(cartProduct.product, categories);
 
   const handleSelect = () => {
     const updatedCart = cart.map((item) =>
@@ -49,19 +53,27 @@ const CartProduct = ({ cartProduct }) => {
             checked={cartProduct?.checked}
             className="h-4 w-4 shrink-0 cursor-pointer accent-primary"
           />
-          <img
-            src={cartProduct?.product.images?.[0]?.url}
-            alt={cartProduct.product.name}
-            className="h-24 w-20 shrink-0 rounded-md border border-gray-light-2 object-contain"
-          />
-          <div className="min-w-0">
-            <h2 className="text-h6 font-bold text-text">
-              {cartProduct?.product.name}
-            </h2>
-            <p className="mt-1 line-clamp-2 text-small text-text-secondary">
-              {cartProduct?.product.description}
-            </p>
-          </div>
+          <Link
+            to={detailPath ?? "/cart"}
+            onClick={(event) => {
+              if (!detailPath) event.preventDefault();
+            }}
+            className="group flex min-w-0 flex-1 cursor-pointer items-center gap-4 text-left"
+          >
+            <img
+              src={cartProduct?.product.images?.[0]?.url}
+              alt={cartProduct.product.name}
+              className="h-24 w-20 shrink-0 rounded-md border border-gray-light-2 object-contain"
+            />
+            <div className="min-w-0">
+              <h2 className="text-h6 font-bold text-text group-hover:text-primary">
+                {cartProduct?.product.name}
+              </h2>
+              <p className="mt-1 line-clamp-2 text-small text-text-secondary">
+                {cartProduct?.product.description}
+              </p>
+            </div>
+          </Link>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-4 lg:justify-end">
           <div className="flex items-center rounded-md border border-gray-light-2">
@@ -86,10 +98,10 @@ const CartProduct = ({ cartProduct }) => {
             </button>
           </div>
           <strong className="whitespace-nowrap text-right text-h6 text-text">
-            {(cartProduct.product.price * cartProduct.count).toLocaleString(
+            ₺{(cartProduct.product.price * cartProduct.count).toLocaleString(
               "tr-TR",
               { minimumFractionDigits: 2, maximumFractionDigits: 2 },
-            )} TL
+            )}
           </strong>
           <button
             type="button"

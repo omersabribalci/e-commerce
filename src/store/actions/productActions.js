@@ -121,6 +121,19 @@ export const getProducts = (
   };
 };
 
+export const ensureProductList = () => {
+  return async (dispatch, getState) => {
+    if (getState().product.productList.length > 0) return;
+
+    try {
+      const response = await api.get("/products");
+      dispatch(setProductList(response.data.products));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
 export const getProductById = (id) => {
   return async (dispatch) => {
     try {

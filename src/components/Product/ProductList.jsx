@@ -1,4 +1,5 @@
 import useOpenProduct from "../../hooks/useOpenProduct";
+import ProductRating from "./ProductRating";
 
 const ProductList = ({ products }) => {
   const openProduct = useOpenProduct();
@@ -17,12 +18,10 @@ const ProductList = ({ products }) => {
             className="h-64 w-full object-contain sm:h-56 sm:w-56 sm:shrink-0"
           />
           <div className="flex min-w-0 flex-1 flex-col justify-center gap-3 p-5 text-left">
-            <h2 className="text-h5 font-bold text-text">{product.name}</h2>
-            <p className="line-clamp-3 text-paragraph text-text-secondary">
-              {product.description}
-            </p>
+            <h2 className="text-h5 font-bold text-primary">{product.name}</h2>
+            <ProductRating rating={product.rating} sellCount={product.sell_count} />
             <span className="text-h5 font-bold text-secondary-1">
-              {product.price} TL
+              ₺{product.price}
             </span>
           </div>
         </div>

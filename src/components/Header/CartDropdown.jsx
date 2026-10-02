@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getProductDetailPath } from "../../utils/productDetailPath";
 
 const CartDropdown = ({ icon }) => {
   const cart = useSelector((state) => state.shoppingCart.cart);
+  const categories = useSelector((state) => state.product.categories);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const itemCount = cart.reduce((total, item) => total + item.count, 0);
@@ -65,6 +67,7 @@ const CartDropdown = ({ icon }) => {
           ) : (
             <ul className="max-h-80 overflow-y-auto">
               {cart.map(({ product, count }) => {
+                const detailPath = getProductDetailPath(product, categories);
                 const imageUrl = product.images?.[0]?.url ?? product.photo;
                 const price = (Number(product.price) * count).toLocaleString(
                   "tr-TR",
@@ -74,26 +77,38 @@ const CartDropdown = ({ icon }) => {
                 return (
                   <li
                     key={product.id}
-                    className="flex gap-4 border-b border-gray-light-2 px-5 py-4 last:border-b-0"
+                    className="border-b border-gray-light-2 last:border-b-0"
                   >
-                    {imageUrl && (
-                      <img
-                        src={imageUrl}
-                        alt={product.name}
-                        className="h-24 w-20 shrink-0 rounded-md border border-gray-light-2 object-contain"
-                      />
-                    )}
-                    <div className="min-w-0 font-normal">
-                      <p className="line-clamp-2 text-paragraph font-semibold">
-                        {product.name}
-                      </p>
-                      <p className="mt-1 text-small text-text-secondary">
-                        Quantity: {count}
-                      </p>
-                      <p className="mt-2 text-paragraph font-bold text-primary">
-                        {price} TL
-                      </p>
-                    </div>
+                    <Link
+                      to={detailPath ?? "/cart"}
+                      onClick={(event) => {
+                        if (!detailPath) {
+                          event.preventDefault();
+                          return;
+                        }
+                        setIsOpen(false);
+                      }}
+                      className="group flex w-full cursor-pointer gap-4 px-5 py-4 text-left hover:bg-gray-light-1"
+                    >
+                      {imageUrl && (
+                        <img
+                          src={imageUrl}
+                          alt={product.name}
+                          className="h-24 w-20 shrink-0 rounded-md border border-gray-light-2 object-contain"
+                        />
+                      )}
+                      <div className="min-w-0 font-normal">
+                        <p className="line-clamp-2 text-paragraph font-semibold group-hover:text-primary">
+                          {product.name}
+                        </p>
+                        <p className="mt-1 text-small text-text-secondary">
+                          Quantity: {count}
+                        </p>
+                        <p className="mt-2 text-paragraph font-bold text-primary">
+                          ₺{price}
+                        </p>
+                      </div>
+                    </Link>
                   </li>
                 );
               })}
