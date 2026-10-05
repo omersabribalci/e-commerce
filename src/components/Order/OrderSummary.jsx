@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { getSelectedProductsTotal } from "../../utils/cartTotal";
 
-const SHIPPING_FEE = 29.99;
-const DISCOUNT = 0;
+export const SHIPPING_FEE = 29.99;
+export const DISCOUNT = 0;
 
 const formatPrice = (value) =>
   `₺${value.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;

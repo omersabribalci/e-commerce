@@ -1,32 +1,87 @@
 import { useState } from "react";
-import OrderSummary from "../components/Order/OrderSummary";
+import OrderSummary, { SHIPPING_FEE } from "../components/Order/OrderSummary";
 import Container from "../components/ui/Container";
 import PageContent from "../layouts/PageContent";
 import AddressInfo from "../components/Order/AddressInfo";
 import PaymentOptions from "../components/Order/PaymentOptions";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getSelectedProductsTotal } from "../utils/cartTotal";
+import api from "../services/axiosInstance";
+import {
+  setAddress,
+  setCart,
+  setPayment,
+} from "../store/actions/shoppingCartActions";
+import { toast } from "react-toastify";
 
 const CreateOrderPage = () => {
   const [activeTab, setActiveTab] = useState("address");
   const [cardCcv, setCardCcv] = useState("");
-  const selectedTotal = useSelector((state) =>
-    getSelectedProductsTotal(state.shoppingCart.cart),
+  const dispatch = useDispatch();
+  const [isPaying, setIsPaying] = useState(false);
+  const cart = useSelector((state) => state.shoppingCart.cart);
+  const shippingAddress = useSelector(
+    (state) => state.shoppingCart.address.shippingAddress,
   );
-  const hasSelectedCard = useSelector((state) =>
-    state.client.creditCards.some(
+
+  const selectedCard = useSelector((state) =>
+    state.client.creditCards.find(
       (card) => card.id === state.shoppingCart.payment.cardId,
     ),
   );
-  const canPay = selectedTotal > 0 && hasSelectedCard && /^\d{3,4}$/.test(cardCcv);
+
+  const selectedTotal = getSelectedProductsTotal(cart);
+
+  const canPay =
+    selectedTotal > 0 &&
+    !!shippingAddress?.id &&
+    !!selectedCard &&
+    /^\d{3,4}$/.test(cardCcv);
 
   const tabs = [
     { id: "address", label: "Address Information" },
     { id: "payment", label: "Payment Options" },
   ];
 
-  const handlePayment = () => {
-    console.log();
+  const handlePayment = async () => {
+    const products = cart
+      .filter((item) => item.checked)
+      .map((item) => ({
+        product_id: item.product.id,
+        count: item.count,
+        detail: "",
+      }));
+
+    const payload = {
+      address_id: shippingAddress.id,
+      order_date: new Date().toISOString().slice(0, 19),
+      card_no: selectedCard.card_no,
+      card_name: selectedCard.name_on_card,
+      card_expire_month: selectedCard.expire_month,
+      card_expire_year: selectedCard.expire_year,
+      card_ccv: cardCcv,
+      price: Number((selectedTotal + SHIPPING_FEE).toFixed(2)),
+      products,
+    };
+
+    setIsPaying(true);
+
+    try {
+      console.log(payload);
+
+      await api.post("/order", payload);
+
+      dispatch(setCart([]));
+      dispatch(setAddress({}));
+      dispatch(setPayment({}));
+      setCardCcv("");
+
+      toast.success("Your order was placed successfully!");
+    } catch {
+      toast.error("Order could not be placed. Please try again.");
+    } finally {
+      setIsPaying(false);
+    }
   };
 
   return (
@@ -60,14 +115,14 @@ const CreateOrderPage = () => {
                 <button
                   onClick={handlePayment}
                   type="button"
-                  disabled={!canPay}
+                  disabled={!canPay || isPaying}
                   className={`cursor-pointer mt-6 block w-full rounded-md px-4 py-3 text-center text-btn font-bold transition-colors duration-300 ${
                     canPay
                       ? "bg-primary text-text-light hover:bg-hover"
                       : "cursor-not-allowed bg-gray-300 text-text-secondary"
                   }`}
                 >
-                  Make a Payment
+                  {isPaying ? "Placing order..." : "Make a Payment"}
                 </button>
               }
             />
