@@ -15,6 +15,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import CreateOrderPage from "./pages/CreateOrderPage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
 import ComingSoonPage from "./pages/ComingSoonPage";
+import OrdersPage from "./pages/OrdersPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,9 @@ const App = () => {
           requireSelectedCart
         >
           <CreateOrderPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/orders" checkingAuth={checkingAuth}>
+          <OrdersPage />
         </ProtectedRoute>
         <Route path="/contact" component={ContactPage} />
         <Route path="/team" component={TeamPage} />

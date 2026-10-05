@@ -1,4 +1,4 @@
-import { CircleUser, Menu, X } from "lucide-react";
+import { ChevronDown, CircleUser, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navIcons, navLink } from "../../data/Navigation/navbar";
 import Container from "../ui/Container";
@@ -181,15 +181,27 @@ const NavBar = () => {
             <li>
               {/* TODO: Add logout here; clear the stored token, Axios Authorization header, and user-specific Redux state. */}
               {user.email ? (
-                <div className="flex flex-row gap-2 items-center justify-center">
-                  <Gravatar
-                    email={user?.email}
-                    size={40}
-                    default="wavatar"
-                    className="rounded-4xl"
-                  />
-                  <p className="text-h6 text-text-secondary">{user.name}</p>
-                </div>
+                <details className="relative">
+                  <summary className="flex cursor-pointer list-none items-center justify-center gap-2">
+                    <Gravatar
+                      email={user.email}
+                      size={40}
+                      default="wavatar"
+                      className="rounded-4xl"
+                    />
+                    <span className="text-h6 text-text-secondary">{user.name}</span>
+                    <ChevronDown size={16} />
+                  </summary>
+                  <div className="absolute right-0 z-50 mt-2 min-w-40 rounded-md border border-gray-light-2 bg-bg-light p-2 shadow-light">
+                    <Link
+                      to="/orders"
+                      onClick={closeMenu}
+                      className="block rounded-md px-3 py-2 text-link font-semibold text-text hover:bg-gray-light-1 hover:text-primary"
+                    >
+                      My Orders
+                    </Link>
+                  </div>
+                </details>
               ) : (
                 <Link
                   to="/login"
