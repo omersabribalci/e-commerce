@@ -49,7 +49,9 @@ const OrdersPage = () => {
         {loading && <p className="text-text-secondary">Loading orders...</p>}
         {error && <p className="text-danger">{error}</p>}
         {!loading && !error && orders.length === 0 && (
-          <p className="text-text-secondary">You have no previous orders yet.</p>
+          <p className="text-text-secondary">
+            You have no previous orders yet.
+          </p>
         )}
 
         {!loading && !error && orders.length > 0 && (
@@ -75,7 +77,10 @@ const OrdersPage = () => {
                   );
 
                   return (
-                    <tr key={order.id} className="border-t border-gray-light-2 align-top">
+                    <tr
+                      key={order.id}
+                      className="border-t border-gray-light-2 align-top"
+                    >
                       <td className="px-4 py-4 font-semibold">#{order.id}</td>
                       <td className="px-4 py-4 whitespace-nowrap">
                         {formatDate(order.order_date)}
@@ -89,14 +94,19 @@ const OrdersPage = () => {
                           <summary className="cursor-pointer font-semibold text-primary hover:text-hover">
                             View items
                           </summary>
-                          <div className="mt-3 break-words rounded-md bg-gray-light-1 p-3">
+                          <div className="mt-3 wrap-break-word rounded-md bg-gray-light-1 p-3">
                             {products.length === 0 ? (
-                              <p className="text-text-secondary">No item details available.</p>
+                              <p className="text-text-secondary">
+                                No item details available.
+                              </p>
                             ) : (
                               <ul className="space-y-2">
                                 {products.map((product, index) => (
                                   <li key={product.id ?? index}>
-                                    {product.name ?? product.product?.name ?? `Product #${product.product_id}`} × {product.count}
+                                    {product.name ??
+                                      product.product?.name ??
+                                      `Product #${product.product_id}`}{" "}
+                                    × {product.count}
                                     {product.detail && (
                                       <span className="block text-text-secondary">
                                         {product.detail}
