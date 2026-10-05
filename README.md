@@ -1,16 +1,20 @@
-# React + Vite
+# E-commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains two separate applications:
 
-Currently, two official plugins are available:
+- `frontend/`: the existing React + Vite application.
+- `backend/`: reserved for the Java + Spring Boot + PostgreSQL application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Frontend development
 
-## React Compiler
+```sh
+cd frontend
+npm ci
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The frontend continues to use the existing Workintech API by default. To point it at another backend, set `VITE_API_BASE_URL` in `frontend/.env.local` (see `frontend/.env.example`). Do not put secrets in a `VITE_` variable: it is exposed to the browser.
 
-## Expanding the ESLint configuration
+The Vercel project's Root Directory must be set to `frontend` before deploying this layout. The SPA rewrite configuration is in `frontend/vercel.json`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+`docs/` is intentionally ignored by Git; create it locally if it is missing after a fresh clone.

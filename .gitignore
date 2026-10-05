@@ -11,6 +11,13 @@ node_modules
 dist
 dist-ssr
 *.local
+docs
+.env
+.env.*
+!.env.example
+backend/target/
+backend/build/
+backend/.gradle/
 
 # Editor directories and files
 .vscode/*
