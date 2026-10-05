@@ -7,7 +7,7 @@ import { setPayment } from "../../store/actions/shoppingCartActions";
 import PaymentCard from "./PaymentCard";
 import PaymentCardForm from "./PaymentCardForm";
 
-const PaymentOptions = () => {
+const PaymentOptions = ({ cardCcv, setCardCcv }) => {
   const dispatch = useDispatch();
   const creditCards = useSelector((state) => state.client.creditCards);
   const payment = useSelector((state) => state.shoppingCart.payment);
@@ -93,7 +93,10 @@ const PaymentOptions = () => {
               selected={card.id === payment.cardId}
               isFormOpen={isFormOpen}
               deleting={deletingId === card.id}
-              onSelect={() => dispatch(setPayment({ ...payment, cardId: card.id }))}
+              onSelect={() => {
+                dispatch(setPayment({ ...payment, cardId: card.id }));
+                setCardCcv("");
+              }}
               onEdit={() => {
                 setEditingCard(card);
                 setIsFormOpen(true);
@@ -101,6 +104,24 @@ const PaymentOptions = () => {
               onDelete={() => handleDelete(card.id)}
             />
           ))}
+        </div>
+      )}
+      {cardsStatus === "loaded" && payment.cardId && (
+        <div className="mt-5">
+          <label htmlFor="card_ccv" className="mb-1 block text-paragraph text-text">
+            CVV *
+          </label>
+          <input
+            id="card_ccv"
+            name="card_ccv"
+            type="text"
+            inputMode="numeric"
+            autoComplete="cc-csc"
+            maxLength={4}
+            value={cardCcv}
+            onChange={(event) => setCardCcv(event.target.value)}
+            className="w-full rounded-md border border-gray-light-2 p-2 text-text outline-none focus:border-primary sm:w-32"
+          />
         </div>
       )}
     </section>

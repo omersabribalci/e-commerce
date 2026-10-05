@@ -14,7 +14,7 @@ const PaymentCardForm = ({ editingCard, setIsFormOpen, onSaved }) => {
   } = useForm({
     mode: "onBlur",
     defaultValues: {
-      card_no: "",
+      card_no: editingCard?.card_no ?? "",
       expire_month: editingCard?.expire_month ?? "",
       expire_year: editingCard?.expire_year ?? "",
       name_on_card: editingCard?.name_on_card ?? "",
@@ -23,7 +23,7 @@ const PaymentCardForm = ({ editingCard, setIsFormOpen, onSaved }) => {
 
   const onSubmit = async (formData) => {
     const cardData = {
-      card_no: formData.card_no.replace(/\s/g, ""),
+      card_no: String(formData.card_no).replace(/\s/g, ""),
       expire_month: Number(formData.expire_month),
       expire_year: Number(formData.expire_year),
       name_on_card: formData.name_on_card.trim(),
@@ -61,7 +61,7 @@ const PaymentCardForm = ({ editingCard, setIsFormOpen, onSaved }) => {
           type="text"
           inputMode="numeric"
           autoComplete="cc-number"
-          placeholder={editingCard ? "Re-enter card number" : "1234 1234 1234 1234"}
+          placeholder="1234 1234 1234 1234"
           className={inputClassName}
           {...register("card_no", {
             required: "Card number is required",
@@ -72,11 +72,6 @@ const PaymentCardForm = ({ editingCard, setIsFormOpen, onSaved }) => {
         />
         {errors.card_no && (
           <p className="mt-1 text-sm text-danger">{errors.card_no.message}</p>
-        )}
-        {editingCard && (
-          <p className="mt-1 text-small text-text-secondary">
-            Re-enter the full card number to save changes.
-          </p>
         )}
       </div>
 

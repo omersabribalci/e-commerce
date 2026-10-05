@@ -28,7 +28,7 @@ const PaymentCard = ({
         <span className="min-w-0 text-paragraph text-text">
           <span className="block font-semibold">{card.name_on_card}</span>
           <span className="text-text-secondary">
-            •••• {card.lastFour} · {month}/{card.expire_year}
+            {card.card_no} · {month}/{card.expire_year}
           </span>
         </span>
       </label>

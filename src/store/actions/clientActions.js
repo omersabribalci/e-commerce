@@ -126,12 +126,7 @@ export const deleteAddress = (id) => {
 export const getCreditCards = () => {
   return async (dispatch) => {
     const response = await api.get("/user/card");
-    // Redux logger should only see the last four digits, not the full card number.
-    const cards = response.data.map(({ card_no, ...card }) => ({
-      ...card,
-      lastFour: String(card_no ?? "").slice(-4),
-    }));
-    dispatch(setCreditCards(cards));
+    dispatch(setCreditCards(response.data));
   };
 };
 

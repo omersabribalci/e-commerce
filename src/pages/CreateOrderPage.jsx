@@ -9,6 +9,7 @@ import { getSelectedProductsTotal } from "../utils/cartTotal";
 
 const CreateOrderPage = () => {
   const [activeTab, setActiveTab] = useState("address");
+  const [cardCcv, setCardCcv] = useState("");
   const selectedTotal = useSelector((state) =>
     getSelectedProductsTotal(state.shoppingCart.cart),
   );
@@ -17,12 +18,17 @@ const CreateOrderPage = () => {
       (card) => card.id === state.shoppingCart.payment.cardId,
     ),
   );
-  const canPay = selectedTotal > 0 && hasSelectedCard;
+  const canPay = selectedTotal > 0 && hasSelectedCard && /^\d{3,4}$/.test(cardCcv);
 
   const tabs = [
     { id: "address", label: "Address Information" },
     { id: "payment", label: "Payment Options" },
   ];
+
+  const handlePayment = () => {
+    console.log();
+  };
+
   return (
     <PageContent>
       <section>
@@ -44,15 +50,18 @@ const CreateOrderPage = () => {
               ))}
             </div>
             {activeTab === "address" && <AddressInfo />}
-            {activeTab === "payment" && <PaymentOptions />}
+            {activeTab === "payment" && (
+              <PaymentOptions cardCcv={cardCcv} setCardCcv={setCardCcv} />
+            )}
           </div>
           <div className="flex-1/4">
             <OrderSummary
               action={
                 <button
+                  onClick={handlePayment}
                   type="button"
                   disabled={!canPay}
-                  className={`mt-6 block w-full rounded-md px-4 py-3 text-center text-btn font-bold transition-colors duration-300 ${
+                  className={`cursor-pointer mt-6 block w-full rounded-md px-4 py-3 text-center text-btn font-bold transition-colors duration-300 ${
                     canPay
                       ? "bg-primary text-text-light hover:bg-hover"
                       : "cursor-not-allowed bg-gray-300 text-text-secondary"
